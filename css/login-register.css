@@ -1,0 +1,258 @@
+/* Estilos generales para el cuerpo del documento */
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    color: #fff;
+    background-image: url(../img/fondo.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+}
+
+/* Estilos para enlaces */
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Contenedor general */
+.cont-general {
+    max-width: 450px;
+    margin: 50px auto;
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Encabezado dentro del contenedor */
+.cont-texto h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 20px;
+}
+
+/* Contenedor del formulario */
+.cont-form {
+    margin-top: 20px;
+}
+
+/* Estilos para campos de entrada */
+input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #3b3b3b;
+    border-radius: 5px;
+}
+
+/* Estilos para etiquetas de formulario */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Botón de enviar formulario */
+.btn-enviar {
+    width: 70%; /* Ajustado al mismo porcentaje que los campos de entrada */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Mensajes de error */
+#error_email,
+#error_pwd {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Estilos para enlaces adicionales */
+.link {
+    margin-top: 20px;
+}
+
+/* Estilos para enlaces cuando están en estado 'hover' */
+a:hover {
+    text-decoration: underline;
+}
+
+#h2-titulo {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Media query para pantallas de 700px */
+@media screen and (max-width: 700px) {
+    body {
+        background-repeat: no-repeat;
+        background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */    
+    }
+
+    .cont-general {
+        max-width: 75%;
+        margin: 20px auto; /* Ajustar el margen para mejor adaptabilidad */
+    }
+
+    .cont-texto h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .cont-form {
+        margin-top: 15px;
+    }
+
+    input {
+        width: 70%;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    .btn-enviar {
+        width: 70%;
+    }
+
+    #error_email,
+    #error_pwd {
+        font-size: 10px;
+    }
+
+    .link {
+        margin-top: 15px;
+    }
+}
+
+/* Media query para pantallas de 650px */
+@media screen and (max-width: 650px) {
+    body {
+        background-repeat: no-repeat;
+        background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */    
+    }
+
+    .cont-general {
+        max-width: 75%;
+        margin: 15px auto;
+    }
+
+    .cont-texto h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .cont-form {
+        margin-top: 10px;
+    }
+
+    input {
+        width: 75%;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    .btn-enviar {
+        width: 74%;
+    }
+
+    #error_email,
+    #error_pwd {
+        font-size: 8px;
+    }
+
+    .link {
+        margin-top: 10px;
+    }
+}
+
+/* Media query para pantallas de 600 */
+@media screen and (max-width: 600px) {
+    body {
+        background-repeat: no-repeat;
+        background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */    
+    }
+
+    .cont-general {
+        max-width: 75%;
+        margin: 15px auto;
+    }
+
+    .cont-texto h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .cont-form {
+        margin-top: 10px;
+    }
+
+    input {
+        width: 75%;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    .btn-enviar {
+        width: 74%;
+    }
+
+    #error_email,
+    #error_pwd {
+        font-size: 8px;
+    }
+
+    .link {
+        margin-top: 10px;
+    }
+}
+
+/* Media query para pantallas de 550px */
+@media screen and (max-width: 550px) {
+    .cont-general {
+        max-width: 75%;
+        margin: 15px auto;
+    }
+
+    .cont-texto h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .cont-form {
+        margin-top: 10px;
+    }
+
+    input {
+        width: 70%;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    .btn-enviar {
+        width: 74%;
+    }
+
+    #error_email,
+    #error_pwd {
+        font-size: 8px;
+    }
+
+    .link {
+        margin-top: 10px;
+    }
+
+    a {
+        font-size: 15px;
+    }
+}
