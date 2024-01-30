@@ -48,10 +48,6 @@
             </div>
 
             <div class="link">
-                <a href="./change_password.php">¿No recuerdas tu contraseña? Cámbiala aquí.</a>
-            </div>
-
-            <div class="link">
                 <a href="./register.php">¿No tienes cuenta? Creala aquí.</a>
             </div>
         </div>
