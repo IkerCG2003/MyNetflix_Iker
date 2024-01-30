@@ -20,15 +20,11 @@
             <br>
 
             <div id="cont-texto" class="cont-texto">
-                <h2 class="h2-titulo" style="color: red; font-weight: bolder;">Bienvenidos a Ñetxlix</h2>
-            </div>
-
-            <div id="cont-texto" class="cont-texto">
                 <h2 class="h2-login">Incio de sesión</h2>
             </div>
 
             <div id="cont-form" class="cont-form">
-                <form action="../validaciones/validar_login.php" method="POST">
+                <form action="../validaciones/login/validar_login.php" method="POST">
                     <div class="input-group">
                         <label class="label-input" for="email">Email:</label>
                         <input type="text" name="email" id="email" class="input-text">

@@ -12,7 +12,7 @@
         <!-- Estilos -->
         <link rel="stylesheet" href="../css/login-register.css">
         <!-- Título -->
-        <title>Iniciar Sesión</title>
+        <title>Registrar</title>
     </head>
 
     <body>
@@ -20,15 +20,11 @@
             <br>
 
             <div id="cont-texto" class="cont-texto">
-                <h2 class="h2-titulo" style="color: red; font-weight: bolder;">Bienvenidos a Ñetxlix</h2>
-            </div>
-
-            <div id="cont-texto" class="cont-texto">
                 <h2 class="h2-login">Registrarse</h2>
             </div>
 
             <div id="cont-form" class="cont-form">
-                <form action="../validaciones/validar_login.php" method="POST">
+                <form action="../validaciones/register/validar-register.php" method="POST">
                     <div class="input-group">
                         <label class="label-input" for="username">Username:</label>
                         <input type="text" name="username" id="username" class="input-text">
@@ -61,11 +57,7 @@
             </div>
 
             <div class="link">
-                <a href="./change_password.php">¿No recuerdas tu contraseña? Cámbiala aquí.</a>
-            </div>
-
-            <div class="link">
-                <a href="./register.php">¿Ya tienes cuenta? Inicia sesión aquí.</a>
+                <a href="./login.php">¿Ya tienes cuenta? Inicia sesión aquí.</a>
             </div>
         </div>
 
