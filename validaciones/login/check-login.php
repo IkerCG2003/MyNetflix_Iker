@@ -23,23 +23,35 @@ try
         if (password_verify($pwd, $row['pwd'])) 
         {
             $_SESSION["user_id"] = $row["id"];
-            $_SESSION['user_rol'] = $row["rol"];                
+            $_SESSION['user_rol'] = $row["rol"];        
+            
+            if ($row["email"] == "admin@gmail.com")
+            {
+                header("Location: ../../view/admin.php");
+                exit();
+            }
 
-            header("Location: ../../view/exito.php");
-            exit();
+            else
+            {
+                header("Location: ../../view/user.php");
+                exit();    
+            }
         }
+
         else
         {
             header("Location: ../../view/login.php?error=usermal");
             exit();
         }
     }
+
     else 
     {
         header("Location: ../../view/login.php?error=usermal");
         exit();
     }
 } 
+
 catch(PDOException $e) 
 {
     echo "Error al iniciar sesión: " . $e->getMessage();
