@@ -45,7 +45,7 @@
                 <script>
                     Swal.fire({
                         position: "top-end",
-                        icon: "error",
+                        icon: "success",
                         title: "Usuario creado correctamente.",
                         showConfirmButton: false,
                         timer: 1500,
@@ -107,14 +107,13 @@
                 document.getElementById("error_email").innerHTML = "";
             }
 
-            // Validación de la contraseña: al menos 9 caracteres
-            if (pwd.length < 9) {
-                document.getElementById("error_pwd").innerHTML = "La contraseña debe tener al menos 9 caracteres.";
-                return false;
-            } else {
+            // Validación de la contraseña: exactamente 9 caracteres
+            if (pwd.length === 9) {
                 document.getElementById("error_pwd").innerHTML = "";
+            } else {
+                document.getElementById("error_pwd").innerHTML = "La contraseña debe tener exactamente 9 caracteres.";
+                return false;
             }
-
 
             return true;
         }
