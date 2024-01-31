@@ -23,7 +23,6 @@ try
         if (password_verify($pwd, $row['pwd'])) 
         {
             $_SESSION["user_id"] = $row["id"];
-            $_SESSION['user_rol'] = $row["rol"];        
             
             if ($row["email"] == "admin@gmail.com")
             {

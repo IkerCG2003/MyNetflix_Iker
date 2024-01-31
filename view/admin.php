@@ -2,6 +2,5 @@
     session_start();
     
     $email = $_SESSION['email'];
-
-    echo $email;
+    $id = $_SESSION['user_id'];
 ?>
