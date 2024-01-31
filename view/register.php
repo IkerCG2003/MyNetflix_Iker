@@ -20,6 +20,7 @@
     <!-- Título -->
     <title>Registrar</title>
 </head>
+
 <body>
     <?php
         if (isset($_GET["error"]) && $_GET["error"] === "emailexiste") {
