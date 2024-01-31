@@ -3,7 +3,7 @@ body {
     font-family: 'Helvetica', 'Arial', sans-serif;
     color: #fff;
     background-image: url(../img/fondo.jpeg);
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat; */
     background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
     margin: 0; /* Elimina el margen predeterminado del cuerpo */
 }
@@ -86,7 +86,7 @@ a:hover {
 /* Media query para pantallas de 700px */
 @media screen and (max-width: 700px) {
     body {
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
         margin: 0; /* Elimina el margen predeterminado del cuerpo */    
     }
@@ -130,7 +130,7 @@ a:hover {
 /* Media query para pantallas de 650px */
 @media screen and (max-width: 650px) {
     body {
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
         margin: 0; /* Elimina el margen predeterminado del cuerpo */    
     }
@@ -174,7 +174,7 @@ a:hover {
 /* Media query para pantallas de 600 */
 @media screen and (max-width: 600px) {
     body {
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
         margin: 0; /* Elimina el margen predeterminado del cuerpo */    
     }
@@ -217,6 +217,12 @@ a:hover {
 
 /* Media query para pantallas de 550px */
 @media screen and (max-width: 550px) {
+    body {
+        /* background-repeat: no-repeat; */
+        background-size: cover; /* Ajuste para que la imagen cubra completamente el fondo */
+        margin: 0; /* Elimina el margen predeterminado del cuerpo */    
+    }
+
     .cont-general {
         max-width: 75%;
         margin: 15px auto;
