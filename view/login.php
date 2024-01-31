@@ -84,7 +84,7 @@
                 <br><br>
 
                 <div class="input-group">
-                    <input type="submit" name="btn_enviar" id="btn_enviar" class="btn-enviar">
+                    <input type="submit" name="btn_enviar" id="btn_enviar" class="btn-enviar" disabled>                
                 </div>
             </form>
         </div>
@@ -118,6 +118,29 @@
 
             return true;
         }
+
+        function validarCampos() {
+            var email = document.getElementById("email").value;
+            var pwd = document.getElementById("pwd").value;
+        
+            // Verificar si todos los campos están llenos
+            if (email !== "" && pwd !== "" ) 
+            {
+                document.getElementById("btn_enviar").disabled = false; // Habilitar el botón de envío
+            } 
+            
+            else 
+            {
+                document.getElementById("btn_enviar").disabled = true; // Deshabilitar el botón de envío
+            }
+        }
+
+        // Agregar eventos 'input' a los campos para llamar a la función de validación
+        document.getElementById("email").addEventListener("input", validarCampos);
+        document.getElementById("pwd").addEventListener("input", validarCampos);
+
+        // Llamar a la función de validación inicialmente
+        validarCampos();
     </script>
 </body>
 </html>
