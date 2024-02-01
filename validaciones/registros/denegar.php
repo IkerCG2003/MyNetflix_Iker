@@ -3,12 +3,12 @@ include_once("../../herramientas/conexion.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener el ID del usuario desde el formulario
-    $id_user = $_POST['id_user'];
+    $id_registro = $_POST['id'];
 
     try {
         // Eliminar el registro específico de tbl_registros
-        $eliminarRegistro = $pdo->prepare("DELETE FROM tbl_registros WHERE id_user = ?");
-        $eliminarRegistro->bindParam(1, $id_user, PDO::PARAM_INT);
+        $eliminarRegistro = $pdo->prepare("DELETE FROM tbl_registros WHERE id = ?");
+        $eliminarRegistro->bindParam(1, $id_registro, PDO::PARAM_INT);
         $eliminarRegistro->execute();
 
         // Respuesta exitosa
@@ -32,3 +32,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(array('error' => 'Método no permitido.'));
 }
+?>

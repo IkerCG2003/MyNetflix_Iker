@@ -48,9 +48,39 @@ include_once('../herramientas/conexion.php');
         }
     ?>  
 
-    <section id="usuarios_registrados">
+    <section id="peticiones_usuarios">
         <div>
             <h2>Peticiones de registro de los usuarios</h2>
+        </div>
+
+        <div>
+            <form action="" method="post" id="frmbusqueda">
+                <div class="form-group">
+                    <label for="buscar_peticiones">Buscar:</label>
+                    <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar..." class="form-control">
+                </div>
+            </form>
+        </div>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID de la petición</th>
+                        <th>Nombre del usuario</th>
+                        <th>Email del usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody id="resultado_registro_usuarios"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="usuarios_registrados">
+        <div>
+            <h2>Usuarios registrados</h2>
         </div>
 
         <div>
@@ -66,16 +96,18 @@ include_once('../herramientas/conexion.php');
             <table>
                 <thead>
                     <tr>
+                        <th>ID del usuario</th>
                         <th>Nombre del usuario</th>
                         <th>Email del usuario</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="resultado_registro_usuarios"></tbody>
+
+                <tbody id="resultado_usuarios_registrados"></tbody>
             </table>
         </div>
     </section>
 
     <script src="../js/peticiones.js"></script>
+    <script src="../js/usuarios.js"></script>
 </body>
 </html>
