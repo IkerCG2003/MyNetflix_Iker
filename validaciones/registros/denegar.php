@@ -2,13 +2,13 @@
 include_once("../../herramientas/conexion.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener el ID del usuario desde el formulario
-    $id_registro = $_POST['id'];
+    // Obtener los datos del usuario desde el formulario
+    $item = json_decode($_POST['item'], true);
 
     try {
         // Eliminar el registro específico de tbl_registros
         $eliminarRegistro = $pdo->prepare("DELETE FROM tbl_registros WHERE id = ?");
-        $eliminarRegistro->bindParam(1, $id_registro, PDO::PARAM_INT);
+        $eliminarRegistro->bindParam(1, $item['id'], PDO::PARAM_INT);
         $eliminarRegistro->execute();
 
         // Respuesta exitosa

@@ -22,7 +22,7 @@ function ListarPeticiones(valor) {
             var json = JSON.parse(ajax.responseText);
 
             if (json.length === 0) {
-                resultado.innerHTML = '<p>No hay peticiones nuevas.</p>';
+                resultado.innerHTML = '<tr><td colspan="4" style="text-align: center;">No hay peticiones nuevas.</td></tr>';
             } else {
                 var tabla = '';
                 json.forEach(function (item) {
@@ -31,7 +31,7 @@ function ListarPeticiones(valor) {
                     tabla += "<td>" + item.email_user + "</td>";
                     tabla += "<td>";
                     tabla += "<button type='button' class='btn btn-success' onclick='Aceptar(" + JSON.stringify(item) + ")'>Aceptar</button>";
-                    tabla += " <button type='button' class='btn btn-danger' onclick='Denegar(" + item.id + ")'>Denegar</button>";
+                    tabla += " <button type='button' class='btn btn-danger' onclick='Denegar(" +  JSON.stringify(item) + ")'>Denegar</button>";
                     tabla += "</td></tr>";
                 });
                 resultado.innerHTML = tabla;
@@ -47,10 +47,9 @@ function Aceptar(item) {
     EnviarAccion(item, 'aceptar');
 }
 
-function Denegar(id) {
-    console.log(id);
-
-    EnviarAccion(id, 'denegar');
+function Denegar(item) {
+    console.log(item);
+    EnviarAccion(item, 'denegar');
 }
 
 function EnviarAccion(item, accion) {
@@ -67,8 +66,6 @@ function EnviarAccion(item, accion) {
                 history.pushState({}, null, '?message=user' + accion);
                 if (accion === 'aceptar' || accion === 'denegar') {
                     ListarPeticiones('');
-                    // Actualiza la página después de realizar la acción con éxito
-                    location.reload();
                 }
             } else {
                 alert('Error al ' + accion + ' el usuario. Mensaje: ' + json.message);
@@ -80,3 +77,11 @@ function EnviarAccion(item, accion) {
 
     ajax.send(formdata);
 }
+
+// Función para realizar la actualización periódica
+function actualizarTablaPeriodicamente() {
+    ListarPeticiones('');
+}
+
+// Actualizar cada 2 segundos 
+setInterval(actualizarTablaPeriodicamente, 2000);
