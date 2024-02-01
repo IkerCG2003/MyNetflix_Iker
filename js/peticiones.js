@@ -11,7 +11,9 @@ buscar_user.addEventListener("keyup", () => {
 
 ListarPeticiones('');
 
-function ListarPeticiones(valor) {
+const itemsPerPage = 5;
+
+function ListarPeticiones(valor, page = 1) {
     var resultado = document.getElementById('resultado_registro_usuarios');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
@@ -21,11 +23,16 @@ function ListarPeticiones(valor) {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
 
-            if (json.length === 0) {
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            const itemsForPage = json.slice(startIndex, endIndex);
+
+            if (itemsForPage.length === 0) {
                 resultado.innerHTML = '<tr><td colspan="4" style="text-align: center;">No hay peticiones nuevas.</td></tr>';
             } else {
                 var tabla = '';
-                json.forEach(function (item) {
+                itemsForPage.forEach(function (item) {
                     tabla += "<tr><td>" + item.id + "</td>";
                     tabla += "<td>" + item.nombre_user + "</td>";
                     tabla += "<td>" + item.email_user + "</td>";
@@ -36,6 +43,8 @@ function ListarPeticiones(valor) {
                 });
                 resultado.innerHTML = tabla;
             }
+
+            updatePaginationControls(json.length, page, 'peticiones');
         } else {
             resultado.innerHTML = '<p>Error al cargar los datos.</p>';
         }
@@ -78,10 +87,26 @@ function EnviarAccion(item, accion) {
     ajax.send(formdata);
 }
 
-// Función para realizar la actualización periódica
-function actualizarTablaPeriodicamente() {
-    ListarPeticiones('');
-}
+function updatePaginationControls(totalItems, currentPage, section) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const paginationElement = document.getElementById(`pagination_${section}`);
+    paginationElement.innerHTML = '';
 
-// Actualizar cada 2 segundos 
-setInterval(actualizarTablaPeriodicamente, 2000);
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = i;
+
+        if (i === currentPage) {
+            a.classList.add('active');
+        }
+
+        a.addEventListener('click', () => {
+            ListarPeticiones('', i);
+        });
+
+        li.appendChild(a);
+        paginationElement.appendChild(li);
+    }
+}

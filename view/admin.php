@@ -83,7 +83,7 @@ include_once('../herramientas/conexion.php');
 
         <div>
             <ul id="pagination_peticiones" class="pagination"></ul>
-        </div>
+        </div>    
     </section>
 
     <section id="usuarios_registrados">
@@ -112,6 +112,10 @@ include_once('../herramientas/conexion.php');
 
                 <tbody id="resultado_usuarios_registrados"></tbody>
             </table>
+        </div>
+
+        <div>
+            <ul id="pagination_usuarios" class="pagination"></ul>
         </div>
     </section>
 

@@ -16,7 +16,7 @@ buscar_peticiones.addEventListener("keyup", () =>
 
 ListarUsers('');
 
-function ListarUsers(valor) 
+function ListarUsers(valor, page = 1) 
 {
     var resultado = document.getElementById('resultado_usuarios_registrados');
     var formdata = new FormData();
@@ -28,14 +28,22 @@ function ListarUsers(valor)
         if (ajax.status == 200) 
         {
             var json = JSON.parse(ajax.responseText);
+
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            const itemsForPage = json.slice(startIndex, endIndex);
+
             var tabla = '';
-            json.forEach(function (item) 
+            itemsForPage.forEach(function (item) 
             {
                 tabla += "<tr><td>" + item.id + "</td>";
                 tabla += "<td>" + item.username + "</td>";
                 tabla += "<td>" + item.email + "</td></tr>";
             });
             resultado.innerHTML = tabla;
+
+            updatePaginationControls(json.length, page, 'usuarios');
         } 
         
         else 
@@ -87,4 +95,28 @@ function EnviarAccion(item, accion)
     };
 
     ajax.send(formdata);
+}
+
+function updatePaginationControls(totalItems, currentPage, section) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const paginationElement = document.getElementById(`pagination_${section}`);
+    paginationElement.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = '#';
+        a.textContent = i;
+
+        if (i === currentPage) {
+            a.classList.add('active');
+        }
+
+        a.addEventListener('click', () => {
+            ListarUsers('', i);
+        });
+
+        li.appendChild(a);
+        paginationElement.appendChild(li);
+    }
 }
