@@ -10,8 +10,6 @@ include_once('../herramientas/conexion.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/admin.css">
     <title>Página del administrador</title>
@@ -52,72 +50,74 @@ include_once('../herramientas/conexion.php');
         }
     ?>  
 
-    <section id="peticiones_usuarios">
-        <div>
-            <h2>Peticiones de registro de los usuarios</h2>
+    <div class="container" id="seccion_usuarios">
+        <h2>Sección de usuarios</h2>
+        <div class="row">
+            <div class="coulmn-2">
+                <section id="peticiones_usuarios">
+                    <div>
+                        <h2>Peticiones de registro</h2>
+                    </div>
+
+                    <div>
+                        <form action="" method="post" id="frmbusqueda">
+                            <div class="form-group">
+                                <label for="buscar_peticiones">Buscar:</label>
+                                <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar..." class="form-control">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-container">                        
+                        <table class="table-section">                            
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th class="email">Email</th>
+                                    <th class="acciones">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="resultado_registro_usuarios"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        
+            <div class="column-2">
+                <section id="usuarios_registrados" class="section">
+                    <div>
+                        <h2>Usuarios registrados</h2>
+                    </div>
+
+                    <div>
+                        <form action="" method="post" id="frmbusqueda">
+                            <div class="form-group">
+                                <label for="buscar_user">Buscar:</label>
+                                <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar..." class="form-control">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="table-section">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="resultado_usuarios_registrados"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
         </div>
+    </div>
 
-        <div>
-            <form action="" method="post" id="frmbusqueda">
-                <div class="form-group">
-                    <label for="buscar_peticiones">Buscar:</label>
-                    <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar..." class="form-control">
-                </div>
-            </form>
-        </div>
-
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID de la petición</th>
-                        <th>Nombre del usuario</th>
-                        <th>Email del usuario</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody id="resultado_registro_usuarios"></tbody>
-            </table>
-        </div>
-
-        <div>
-            <ul id="pagination_peticiones" class="pagination"></ul>
-        </div>    
-    </section>
-
-    <section id="usuarios_registrados">
-        <div>
-            <h2>Usuarios registrados</h2>
-        </div>
-
-        <div>
-            <form action="" method="post" id="frmbusqueda">
-                <div class="form-group">
-                    <label for="buscar_user">Buscar:</label>
-                    <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar..." class="form-control">
-                </div>
-            </form>
-        </div>
-
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID del usuario</th>
-                        <th>Nombre del usuario</th>
-                        <th>Email del usuario</th>
-                    </tr>
-                </thead>
-
-                <tbody id="resultado_usuarios_registrados"></tbody>
-            </table>
-        </div>
-
-        <div>
-            <ul id="pagination_usuarios" class="pagination"></ul>
-        </div>
-    </section>
 
     <script src="../js/peticiones.js"></script>
     <script src="../js/usuarios.js"></script>

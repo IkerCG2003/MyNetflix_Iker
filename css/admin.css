@@ -1,81 +1,167 @@
+/* Reset de estilos generales */
 body {
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
     background-color: #f2f2f2;
 }
 
-section {
-    margin-bottom: 20px;
+/* Contenedor principal */
+.container {
+    width: 80%;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
+/* Títulos */
 h2 {
+    text-align: center;
     color: #333;
 }
 
-form {
-    margin-bottom: 15px;
+/* Filas y columnas flexibles */
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-label {
-    font-weight: bold;
-    margin-right: 10px;
+.column-2 {
+    width: 48%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
 }
 
-input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.section {
+    margin-top: 20px;
 }
 
-table {
+/* Estilos para la tabla */
+.table-container {
+    max-height: 50vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.table-section {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Add this to your CSS file */
-
-.pagination {
-    list-style: none;
-    display: flex;
-    gap: 5px;
     margin-top: 10px;
+    font-size: 16px;
+    background-color: #fff;
 }
 
-.pagination li {
-    display: inline-block;
-    margin: 0;
-    padding: 5px 10px;
-    background-color: #f1f1f1;
+.table-section th, .table-section td {
+    padding: 16px;
+    text-align: left;
     border: 1px solid #ddd;
-    cursor: pointer;
 }
 
-.pagination li a {
+.table-section th {
+    background-color: #333;
+    color: #fff;
+}
+
+.table-section tbody tr:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+
+.table-section tbody tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+.table-section tbody tr:hover {
+    background-color: #ccc;
+}
+
+/* Estilos específicos para celdas de la tabla */
+.acciones {
+    width: 160px;
+}
+
+.email {
+    width: 200px;
+}
+
+/* Estilos para formularios y botones */
+form {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+/* Estilos para la barra de desplazamiento en navegadores WebKit */
+.table-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Sección específica con altura del 80% */
+#seccion_usuarios {
+    height: 80%;
+}
+
+/* Estilos para los botones */
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 8px; 
+    font-size: 12px;
+    text-align: center;
     text-decoration: none;
-    color: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.pagination li a.active {
-    background-color: #4CAF50;
-    color: white;
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    border: 1px solid #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #c82333;
+}
+
+/* Cambios en el estilo de hover para los botones */
+.btn:hover {
+    background-color: #218838;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
 }

@@ -2,7 +2,7 @@
     $dbserver = "localhost"; // Servidor
     $dbusername = "root"; // Nombre de usuario
     $dbpassword = ""; // Contraseña del usuario
-    $dbbasedatos = "db_mynetflix"; // Base de datos a la que nos queremos conectar
+    $dbbasedatos = "bd_mynetflix"; // Base de datos a la que nos queremos conectar
 
     // Con el bloque Try / Catch buscamos errores.
     try 

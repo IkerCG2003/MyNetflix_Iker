@@ -1,8 +1,8 @@
-const buscar_peticiones = document.getElementById("buscar_user");
+const buscar_user = document.getElementById("buscar_user");
 
-buscar_peticiones.addEventListener("keyup", () => 
+buscar_user.addEventListener("keyup", () => 
 {
-    const valor = buscar_peticiones.value;
+    const valor = buscar_user.value;
     if (valor == "") 
     {
         ListarUsers('');
