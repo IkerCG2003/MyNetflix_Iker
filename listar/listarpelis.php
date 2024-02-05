@@ -5,7 +5,7 @@ if (!empty($_POST['busqueda'])) {
     $data = $_POST['busqueda'];
     $consulta = $pdo->prepare("SELECT * FROM tbl_peliculas WHERE id LIKE '%".$data."%' OR nombre LIKE '%".$data."%' OR genero LIKE '%".$data."%'");
 } else {
-    $consulta = $pdo->prepare("SELECT * FROM tbl_peliculas");
+    $consulta = $pdo->prepare("SELECT * FROM tbl_peliculas ORDER BY cantidadmegustas DESC");
 }
 
 $consulta->execute();
