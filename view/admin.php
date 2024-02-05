@@ -93,7 +93,28 @@
         </div>
     </div>
 
+    <div class="container" id="seccion_pelis">
+        <h2>Sección del catálogo de películas</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" method="post" id="frmbusqueda">
+                    <div class="form-group">
+                        <label for="buscar_peli">Buscar:</label>
+                        <input type="text" name="buscar_peli" id="buscar_peli"  placeholder="Buscar..." class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class='btn btn-success'>Añadir película</button>
+            </div>
+        </div>
 
+        <div class="grid">
+            <div id="resultado_pelis"></div>
+        </div>
+    </div>
+
+    <script src="../js/pelis.js"></script>
     <script src="../js/top5.js"></script>
     <script src="../js/peticiones.js"></script>
     <script src="../js/usuarios.js"></script>

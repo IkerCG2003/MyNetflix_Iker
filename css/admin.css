@@ -123,6 +123,10 @@ form {
     height: 80%;
 }
 
+#buscar_peli {
+    width: 65vw;
+}
+
 /* Estilos para los botones */
 .btn-container {
     display: flex;
@@ -154,15 +158,13 @@ form {
 }
 
 .btn-warning {
-    background-color: #d0ff36;
+    background-color: #f3eb00;
     color: #000000;
-    border:rgb(0, 0, 0) solid #000000;
+    border: 1px solid #000000;
 }
 
-
-
 /* Cambios en el estilo de hover para los botones */
-.btn-success:hover {
+.btn:hover {
     background-color: #218838;
 }
 
@@ -171,29 +173,14 @@ form {
 }
 
 .btn-warning:hover {
-    background-color: #86a224;
+    background-color: #adaf2f;
 }
-
 
 /* Agrega este estilo al final de tu archivo admin.css */
 .grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-}
-
-.grid-item {
-    width: calc(20% - 20px);
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 20px; 
-}
-
-.movie-image {
-    width: 100%; 
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover; 
 }
 
 .movie-name {
@@ -233,5 +220,5 @@ img {
 
 .grid-item {
     text-align: center;
-    margin: 25px;
+    margin: 15px;
 }
