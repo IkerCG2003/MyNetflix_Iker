@@ -54,11 +54,31 @@ function Aceptar(item) {
     EnviarAccion(item, 'aceptar');
 }
 
-function Denegar(id) {
-    EnviarAccion(id, 'denegar');
+function Denegar(item) {
+    EnviarAccion(item, 'denegar');
 }
 
 function EnviarAccion(item, accion) {
+    var formdata = new FormData();
+    formdata.append('item', JSON.stringify(item));
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción cambiará el estado de la petición.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, realizar acción'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If confirmed, proceed with the action
+            realizarAccion(item, accion);
+        }
+    });
+}
+
+function realizarAccion(item, accion) {
     var formdata = new FormData();
     formdata.append('item', JSON.stringify(item));
 
@@ -69,12 +89,22 @@ function EnviarAccion(item, accion) {
             var json = JSON.parse(ajax.responseText);
 
             if (json.success) {
-                history.pushState({}, null, '?message=user' + accion);
-                if (accion === 'aceptar' || accion === 'denegar') {
-                    ListarUsers('');
-                }
+                Swal.fire({
+                    title: '¡Acción realizada!',
+                    text: 'La petición ha sido ' + accion + 'da.',
+                    icon: 'success'
+                }).then(() => {
+                    history.pushState({}, null, '?message=user' + accion);
+                    if (accion === 'aceptar' || accion === 'denegar') {
+                        ListarUsers('');
+                    }
+                });
             } else {
-                alert('Error al ' + accion + ' el usuario. Mensaje: ' + json.message);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Error al ' + accion + ' la petición. Mensaje: ' + json.message,
+                    icon: 'error'
+                });
             }
         } else {
             console.error('Error en la solicitud AJAX.');

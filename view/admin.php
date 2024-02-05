@@ -16,40 +16,6 @@
 </head>
 
 <body>
-    <?php
-        if (isset($_GET["message"]) && $_GET["message"] === "useraceptar") {
-            ?>
-                <script>
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Has aceptado al usuario.",
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true
-                    });
-                </script>
-            <?php
-        }
-    ?>  
-
-    <?php
-        if (isset($_GET["message"]) && $_GET["message"] === "userdenegar") {
-            ?>
-                <script>
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Has denegado al usuario.",
-                        showConfirmButton: false,
-                        timer: 1500,
-                        timerProgressBar: true
-                    });
-                </script>
-            <?php
-        }
-    ?>  
-
     <div class="container" id="seccion_usuarios">
         <h2>Sección de usuarios</h2>
         <div class="row">
