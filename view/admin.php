@@ -29,7 +29,7 @@
                         <form action="" method="post" id="frmbusqueda">
                             <div class="form-group">
                                 <label for="buscar_peticiones">Buscar:</label>
-                                <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar..." class="form-control">
+                                <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar peticiones..." class="form-control">
                             </div>
                         </form>
                     </div>
@@ -60,8 +60,8 @@
                     <div>
                         <form action="" method="post" id="frmbusqueda">
                             <div class="form-group">
-                                <label for="buscar_user">Buscar:</label>
-                                <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar..." class="form-control">
+                                <label for="buscar_user">Buscar</label>
+                                <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar usuarios..." class="form-control">
                             </div>
                         </form>
                     </div>
@@ -100,7 +100,7 @@
                 <form action="" method="post" id="frmbusqueda">
                     <div class="form-group">
                         <label for="buscar_peli">Buscar:</label>
-                        <input type="text" name="buscar_peli" id="buscar_peli"  placeholder="Buscar..." class="form-control">
+                        <input type="text" name="buscar_peli" id="buscar_peli"  placeholder="Buscar por título y género..." class="form-control">
                     </div>
                 </form>
             </div>

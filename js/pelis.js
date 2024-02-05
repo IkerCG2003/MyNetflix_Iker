@@ -13,6 +13,8 @@ ListarPeli('');
 
 function ListarPeli(valor) {
     var resultado = document.getElementById('resultado_pelis');
+    var formdata = new FormData();
+    formdata.append('busqueda', valor);
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../listar/listarpelis.php');
     ajax.onload = function () {
@@ -39,5 +41,5 @@ function ListarPeli(valor) {
             resultado.innerHTML = '<p>Error al cargar los datos.</p>';
         }
     };
-    ajax.send();
+    ajax.send(formdata);
 }
