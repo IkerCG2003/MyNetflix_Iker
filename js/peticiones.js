@@ -49,3 +49,37 @@ function ListarPeticiones(valor) {
     };
     ajax.send(formdata);
 }
+
+function Aceptar(item) {
+    EnviarAccion(item, 'aceptar');
+}
+
+function Denegar(id) {
+    EnviarAccion(id, 'denegar');
+}
+
+function EnviarAccion(item, accion) {
+    var formdata = new FormData();
+    formdata.append('item', JSON.stringify(item));
+
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../validaciones/registros/' + accion + '.php');
+    ajax.onload = function () {
+        if (ajax.status == 200) {
+            var json = JSON.parse(ajax.responseText);
+
+            if (json.success) {
+                history.pushState({}, null, '?message=user' + accion);
+                if (accion === 'aceptar' || accion === 'denegar') {
+                    ListarUsers('');
+                }
+            } else {
+                alert('Error al ' + accion + ' el usuario. Mensaje: ' + json.message);
+            }
+        } else {
+            console.error('Error en la solicitud AJAX.');
+        }
+    };
+
+    ajax.send(formdata);
+}

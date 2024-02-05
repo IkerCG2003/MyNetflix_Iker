@@ -144,23 +144,36 @@ form {
 .btn-success {
     background-color: #28a745;
     color: #fff;
-    border: 1px solid #218838;
+    border: 1px solid #000000;
 }
 
 .btn-danger {
     background-color: #dc3545;
     color: #fff;
-    border: 1px solid #c82333;
+    border: 1px solid #000000;
 }
 
+.btn-warning {
+    background-color: #d0ff36;
+    color: #000000;
+    border:rgb(0, 0, 0) solid #000000;
+}
+
+
+
 /* Cambios en el estilo de hover para los botones */
-.btn:hover {
+.btn-success:hover {
     background-color: #218838;
 }
 
 .btn-danger:hover {
     background-color: #c82333;
 }
+
+.btn-warning:hover {
+    background-color: #86a224;
+}
+
 
 /* Agrega este estilo al final de tu archivo admin.css */
 .grid {

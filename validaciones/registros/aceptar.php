@@ -2,10 +2,10 @@
 include_once("../../herramientas/conexion.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener los datos del usuario desde el formulario
-    $item = json_decode($_POST['item'], true);
-    
     try {
+        // Obtener los datos del usuario desde el formulario
+        $item = json_decode($_POST['item'], true);
+
         // Iniciar una transacción
         $pdo->beginTransaction();
 
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nuevoID = $ultimoID + 1;
 
         // Insertar el registro en tbl_usuarios con el nuevo ID y los datos del formulario
-        $insertarUsuario = $pdo->prepare("INSERT INTO tbl_usuarios (id, username, email, pwd) VALUES (?, ?, ?, ?)");
+        $insertarUsuario = $pdo->prepare("INSERT INTO tbl_usuarios (id, username, email, pwd, estado) VALUES (?, ?, ?, ?, 'activo')");
         $insertarUsuario->bindParam(1, $nuevoID, PDO::PARAM_INT);
         $insertarUsuario->bindParam(2, $item['nombre_user'], PDO::PARAM_STR);
         $insertarUsuario->bindParam(3, $item['email_user'], PDO::PARAM_STR);

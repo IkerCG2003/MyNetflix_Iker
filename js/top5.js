@@ -10,7 +10,7 @@ function ListarTop5()
         if (ajax.status == 200) 
         {
             var json = JSON.parse(ajax.responseText);
-            var contenido = '<div class="grid-container">'; // Agregamos un contenedor para la alineación horizontal
+            var contenido = '<div class="grid-container">'; 
             json.forEach(function (item) 
             {
                 contenido += '<div class="grid-item">';
@@ -20,7 +20,7 @@ function ListarTop5()
                 contenido += '<p class="movie-info">Me Gustas: ' + item.cantidadmegustas + '</p>';
                 contenido += '</div>';
             });
-            contenido += '</div>'; // Cerramos el contenedor
+            contenido += '</div>'; 
             resultado.innerHTML = contenido;
         } 
         

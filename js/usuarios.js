@@ -1,85 +1,87 @@
 const buscar_user = document.getElementById("buscar_user");
 
-buscar_user.addEventListener("keyup", () => 
-{
+buscar_user.addEventListener("keyup", () => {
     const valor = buscar_user.value;
-    if (valor == "") 
-    {
+    if (valor == "") {
         ListarUsers('');
-    } 
-    
-    else 
-    {
+    } else {
         ListarUsers(valor);
     }
 });
 
 ListarUsers('');
 
-function ListarUsers(valor) 
-{
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-estado')) {
+        var idUsuario = e.target.getAttribute('data-id');
+        mostrarSweetAlert(idUsuario);
+    }
+});
+
+function ListarUsers(valor) {
     var resultado = document.getElementById('resultado_usuarios_registrados');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../listar/listarusuarios.php');
-    ajax.onload = function () 
-    {
-        if (ajax.status == 200) 
-        {
+    ajax.onload = function () {
+        if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
             var tabla = '';
-            json.forEach(function (item) 
-            {
+            json.forEach(function (item) {
                 tabla += "<tr><td>" + item.id + "</td>";
                 tabla += "<td>" + item.username + "</td>";
-                tabla += "<td>" + item.email + "</td></tr>";
+                tabla += "<td>" + item.email + "</td>";
+                tabla += "<td>" + item.estado + "</td>";
+                tabla += "<td><button type='button' class='btn btn-warning' onclick='mostrarSweetAlert(" + item.id + ")'>Cambiar Estado</button></td></tr>";
             });
             resultado.innerHTML = tabla;
-        } 
-        
-        else 
-        {
+        } else {
             resultado.innerHTML = '<p>Error al cargar los datos.</p>';
         }
     };
     ajax.send(formdata);
 }
 
-function Aceptar(item) 
-{
-    EnviarAccion(item, 'aceptar');
-}
-
-function Denegar(id) 
-{
-    EnviarAccion(id, 'denegar');
-}
-
-function EnviarAccion(item, accion) 
-{
+function mostrarSweetAlert(id) {
     var formdata = new FormData();
-    formdata.append('item', JSON.stringify(item));
+    formdata.append('id', JSON.stringify(id));
+
+    Swal.fire({
+        title: '¿Quieres cambiar el estado del usuario?',
+        text: 'Esta acción cambiará el estado del usuario.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, cambiar estado'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            cambiarEstadoUsuario(id);
+        }
+    });
+}
+
+function cambiarEstadoUsuario(id) {
+    var formdata = new FormData();
+    formdata.append('id', JSON.stringify(id));
 
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../validaciones/registros/' + accion + '.php');
-    ajax.onload = function () 
-    {
+    ajax.open('POST', '../validaciones/registros/estado.php');
+    ajax.onload = function () {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
 
-            if (json.success) 
-            {
-                history.pushState({}, null, '?message=user' + accion);
-                if (accion === 'aceptar' || accion === 'denegar') 
-                {
-                    ListarUsers('');
-                }
-            } 
-            
-            else 
-            {
-                alert('Error al ' + accion + ' el usuario. Mensaje: ' + json.message);
+            if (json.success) {
+                Swal.fire({
+                    title: '¡Estado cambiado!',
+                    text: 'El estado del usuario ha sido modificado.',
+                    icon: 'success'
+                }).then(() => {
+                    window.location.href = '?message=estadocambiado&id=' + id;
+                });
+            } else {
+                alert('Error al cambiar el estado del usuario. Mensaje: ' + json.message);
             }
         } else {
             console.error('Error en la solicitud AJAX.');

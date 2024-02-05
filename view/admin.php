@@ -107,6 +107,8 @@
                                     <th>ID</th>
                                     <th>Username</th>
                                     <th>Email</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
 
