@@ -173,14 +173,14 @@ form {
     width: calc(20% - 20px);
     box-sizing: border-box;
     text-align: center;
-    margin-bottom: 20px; /* Añadido margen inferior para separar las filas */
+    margin-bottom: 20px; 
 }
 
 .movie-image {
-    width: 100%; /* Cambiado para ocupar todo el ancho del grid-item */
+    width: 100%; 
     height: auto;
     border-radius: 8px;
-    object-fit: cover; /* Ajusta la imagen manteniendo su proporción y cubriendo el contenedor */
+    object-fit: cover; 
 }
 
 .movie-name {
@@ -199,20 +199,6 @@ form {
     gap: 20px;
 }
 
-.grid-item {
-    flex: 0 1 calc(20% - 20px); /* Ajusta el tamaño y permite crecer o decrecer según el espacio disponible */
-    box-sizing: border-box;
-    text-align: center;
-    margin-bottom: 20px; /* Añadido margen inferior para separar las filas */
-}
-
-.movie-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
 .movie-name {
     font-weight: bold;
     margin-top: 8px;
@@ -225,4 +211,14 @@ form {
 img {
     width: 200px;
     height: 300px;
+    border-radius: 5px;
+}
+
+.grid-container {
+    display: flex;
+}
+
+.grid-item {
+    text-align: center;
+    margin: 25px;
 }

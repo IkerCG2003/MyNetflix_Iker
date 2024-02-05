@@ -119,44 +119,14 @@
     </div>
 
     <div class="container" id="seccion_top">
-    <?php
-        include_once('../herramientas/conexion.php');
+        <h2>Sección del TOP 5 de películas</h2>
+        <div class="grid">
+            <div id="resultado_top5"></div>
+        </div>
+    </div>
 
-        $top5_query = "SELECT * FROM `tbl_peliculas` ORDER BY cantidadmegustas DESC LIMIT 5;";
 
-        try {
-            $stmt = $pdo->prepare($top5_query);
-            $stmt->execute();
-            $top5_result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if ($top5_result) {
-                ?>
-                <h2>Sección del TOP 5 de películas</h2>
-
-                <div class="grid">
-                    <?php
-                        foreach ($top5_result as $row) {
-                            ?>
-                            <div class="grid-item">
-                                <img src="../img/<?php echo $row['nombre'] ?>.jpg">
-                                <p class="movie-name"><?php echo $row['nombre']; ?></p>
-                                <p class="movie-info"><?php echo $row['genero']; ?></p>
-                                <p class="movie-info">Me Gustas: <?php echo $row['cantidadmegustas']; ?></p>
-                            </div>
-                            <?php
-                        }
-                    ?>
-                </div>
-                <?php
-            } else {
-                echo "No se encontraron registros en el TOP 5 de películas.";
-            }
-        } catch (PDOException $e) {
-            echo "Error al obtener el TOP 5 de películas: " . $e->getMessage();
-        }
-    ?>
-</div>
-
+    <script src="../js/top5.js"></script>
     <script src="../js/peticiones.js"></script>
     <script src="../js/usuarios.js"></script>
 </body>
