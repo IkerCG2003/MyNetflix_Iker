@@ -176,16 +176,20 @@ form {
     background-color: #adaf2f;
 }
 
-
 .movie-name {
+    height: 60px;
     font-weight: bold;
-    margin-top: 8px;
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    word-wrap: break-word; /* Permite que las palabras largas se dividan en varias líneas */
+    overflow-wrap: break-word; /* Para navegadores más antiguos que no admiten word-wrap */
+    margin-bottom: -5PX;
 }
 
 .movie-info {
-    margin-top: 4px;
+    margin-bottom: 5PX;
 }
-
 
 img {
     width: 150px;
@@ -199,11 +203,11 @@ img {
 
 .grid-item {
     text-align: center;
-    margin: 6px;
+    margin: 12px;
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
 }

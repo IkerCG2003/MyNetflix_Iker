@@ -20,12 +20,12 @@ function ListarPeli(valor) {
     ajax.onload = function () {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
-            var contenido = '<div class="row">';
+            var contenido = '<div class="grid-container">';
             json.forEach(function (item, index) {
                 // Abre una nueva fila cada 5 elementos
                 if (index % 5 === 0) {
                     contenido += '</div>'; // Cierra la fila anterior (excepto en la primera iteración)
-                    contenido += '<div class="row">'; // Inicia una nueva fila
+                    contenido += '<div class="grid-container">'; // Inicia una nueva fila
                 }
                 // Agrega el contenido de cada película
                 contenido += '<div class="col-md-2 grid-item">';

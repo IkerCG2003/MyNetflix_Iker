@@ -13,7 +13,7 @@ function ListarTop5()
             var contenido = '<div class="grid-container">'; 
             json.forEach(function (item) 
             {
-                contenido += '<div class="grid-item">';
+                contenido += '<div class="col-md-2 grid-item"">';
                 contenido += '<img src="../img/' + item.nombre + '.jpg" alt="' + item.nombre + '">';
                 contenido += '<p class="movie-name">' + item.nombre + '</p>';
                 contenido += '<p class="movie-info">' + item.genero + '</p>';

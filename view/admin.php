@@ -192,16 +192,16 @@
                             <br>
                             <select name="genero_peli" id="genero_peli" class="form-control">
                                 <option value="" disabled selected>-- Selecciona una opción --</option>
-                                <option value="animacion">Animación</option>
-                                <option value="accion">Acción</option>
-                                <option value="drama">Drama</option>
-                                <option value="fantasia">Fantasía</option>
-                                <option value="crimen">Crimen</option>
-                                <option value="cienciaficcion">Ciencia Ficción</option>
-                                <option value="aventura">Aventura</option>
-                                <option value="thriller">Thriller</option>
-                                <option value="Romance"></option>
-                                <option value="Musical"></option>
+                                <option value="Animacion">Animación</option>
+                                <option value="Acción">Acción</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Fantasía">Fantasía</option>
+                                <option value="Crimen">Crimen</option>
+                                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Musical">Musical</option>
                             </select>
                         </div>
 
