@@ -43,3 +43,25 @@ function ListarPeli(valor) {
     };
     ajax.send(formdata);
 }
+
+// Lógica para añadir película
+const btnAnadirPelicula = document.getElementById('btn-insertar');
+
+btnAnadirPelicula.addEventListener('click', () => {
+    // Aquí puedes realizar la lógica de inserción, por ejemplo, enviar una solicitud al servidor
+    // utilizando AJAX o Fetch para procesar la inserción en el archivo insertar.php
+    // Puedes utilizar la función ListarPeli() para actualizar la lista después de la inserción
+    // Ejemplo con Fetch:
+    fetch('../validaciones/inserciones/insertar.php', {
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Puedes manejar la respuesta del servidor después de la inserción
+        console.log(data);
+        // Actualizar la lista después de la inserción
+        ListarPeli('');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});

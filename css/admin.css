@@ -7,7 +7,7 @@ body {
 
 /* Contenedor principal */
 .container {
-    width: 80%;
+    width: 95%;
     margin: 20px auto; 
     background-color: #fff;
     border-radius: 10px;
@@ -120,11 +120,11 @@ form {
 
 /* Sección específica con altura del 80% */
 #seccion_usuarios {
-    height: 80%;
+    height: 120vh;
 }
 
 #buscar_peli {
-    width: 65vw;
+    width: 40vw;
 }
 
 /* Estilos para los botones */
@@ -176,12 +176,6 @@ form {
     background-color: #adaf2f;
 }
 
-/* Agrega este estilo al final de tu archivo admin.css */
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
 
 .movie-name {
     font-weight: bold;
@@ -192,25 +186,10 @@ form {
     margin-top: 4px;
 }
 
-/* Agrega este estilo al final de tu archivo admin.css */
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.movie-name {
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.movie-info {
-    margin-top: 4px;
-}
 
 img {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 250px;
     border-radius: 5px;
 }
 
@@ -220,5 +199,11 @@ img {
 
 .grid-item {
     text-align: center;
-    margin: 15px;
+    margin: 6px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
