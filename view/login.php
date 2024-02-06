@@ -40,6 +40,24 @@
     ?>  
 
     <?php
+        if (isset($_GET["error"]) && $_GET["error"] === "userinactivo") {
+            ?>
+                <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Usuario inactivo",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    });
+                </script>
+            <?php
+        }
+    ?>  
+
+
+    <?php
         if (isset($_GET["message"]) && $_GET["message"] === "usercreado") {
             ?>
                 <script>

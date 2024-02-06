@@ -120,7 +120,7 @@ form {
 
 /* Sección específica con altura del 80% */
 #seccion_usuarios {
-    height: 120vh;
+    height: 140vh;
 }
 
 #buscar_peli {
@@ -185,6 +185,7 @@ form {
     word-wrap: break-word; /* Permite que las palabras largas se dividan en varias líneas */
     overflow-wrap: break-word; /* Para navegadores más antiguos que no admiten word-wrap */
     margin-bottom: -5PX;
+    text-align: center;
 }
 
 .movie-info {
@@ -201,13 +202,34 @@ img {
     display: flex;
 }
 
-.grid-item {
-    text-align: center;
-    margin: 12px;
-}
-
 .grid {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+/* Opciones */
+.grid-item {
+    position: relative;
+    margin: 12px;
+}
+
+.grid-item .options {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding-top: 40%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.grid-item:hover .options {
+    display: block;
+    opacity: 1;
 }

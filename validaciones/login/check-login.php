@@ -20,6 +20,12 @@ try
 
     if ($row) 
     {
+        if ($row['estado'] === 'inactivo') 
+        {
+            header("Location: ../../view/login.php?error=userinactivo");
+            exit();
+        }
+
         if (password_verify($pwd, $row['pwd'])) 
         {
             $_SESSION["user_id"] = $row["id"];
