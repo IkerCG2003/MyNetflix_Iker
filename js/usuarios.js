@@ -51,6 +51,7 @@ function mostrarSweetAlert(id) {
         title: '¿Quieres cambiar el estado del usuario?',
         text: 'Esta acción cambiará el estado del usuario.',
         icon: 'warning',
+        position: 'top-end',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -74,6 +75,7 @@ function cambiarEstadoUsuario(id) {
 
             if (json.success) {
                 Swal.fire({
+                    position: 'top-end',
                     title: '¡Estado cambiado!',
                     text: 'El estado del usuario ha sido modificado.',
                     icon: 'success'
