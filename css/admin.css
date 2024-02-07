@@ -40,7 +40,7 @@ h2 {
 
 /* Estilos para la tabla */
 .table-container {
-    max-height: 50vh;
+    max-height: 70vh;
     overflow-y: auto;
     scrollbar-width: thin;
 }
@@ -189,7 +189,7 @@ form {
 }
 
 .movie-info {
-    margin-bottom: 5PX;
+    margin-bottom: 10px;
 }
 
 img {
@@ -208,28 +208,4 @@ img {
     gap: 10px;
 }
 
-/* Opciones */
-.grid-item {
-    position: relative;
-    margin: 12px;
-}
 
-.grid-item .options {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    text-align: center;
-    padding-top: 40%;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.grid-item:hover .options {
-    display: block;
-    opacity: 1;
-}

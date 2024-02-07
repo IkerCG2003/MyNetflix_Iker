@@ -71,6 +71,23 @@
                     </script>
                 <?php
             }
+        ?>
+        
+        <?php
+            if (isset($_GET["message"]) && $_GET["message"] === "peliculaeliminada") {
+                ?>
+                    <script>
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Se ha eliminado la película correctamente",
+                            showConfirmButton: false,
+                            timer: 1500,
+                            timerProgressBar: true
+                        });
+                    </script>
+                <?php
+            }
         ?>  
 
         <div class="container" id="seccion_usuarios">
