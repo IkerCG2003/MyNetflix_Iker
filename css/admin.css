@@ -189,9 +189,13 @@ form {
     padding: 10px;
 }
 
-/* Estilos para las películas */
 .grid-item {
-    margin: 10px; 
+    margin-right: 10px; /* Establece el margen derecho entre las imágenes */
+}
+
+/* Elimina el margen derecho de la última imagen en la fila */
+.row .grid-item:last-child {
+    margin-right: 0;
 }
 
 
@@ -206,7 +210,7 @@ img {
     background-color: #ccc;
     text-align: center;
     width: 200px;
-    height: 160px;
+    height: 150px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
