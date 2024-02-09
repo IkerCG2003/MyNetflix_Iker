@@ -21,6 +21,7 @@ include_once('../herramientas/conexion.php');
 </head>
 
 <body>
+    <!-- ALERTAS -->
     <?php
     if (isset($_GET["error"]) && $_GET["error"] === "peliexiste") {
         ?>
@@ -88,7 +89,7 @@ include_once('../herramientas/conexion.php');
     <?php
     }
     ?>
-
+    
     <div class="container" id="seccion_usuarios">
         <h2>Sección de usuarios</h2>
         <div>

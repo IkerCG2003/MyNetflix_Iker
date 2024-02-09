@@ -1,10 +1,14 @@
 <?php
 include_once("../herramientas/conexion.php");
 
-if (!empty($_POST['busqueda'])) {
+if (!empty($_POST['busqueda'])) 
+{
     $data = $_POST['busqueda'];
     $consulta = $pdo->prepare("SELECT * FROM tbl_registros WHERE id_user LIKE '%".$data."%' OR nombre_user LIKE '%".$data."%' OR email_user LIKE '%".$data."%'");
-} else {
+} 
+
+else 
+{
     $consulta = $pdo->prepare("SELECT * FROM tbl_registros");
 }
 

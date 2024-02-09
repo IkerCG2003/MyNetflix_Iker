@@ -5,13 +5,13 @@ buscar_peticiones.addEventListener("keyup", () => {
     ListarPeticiones(valor);
 });
 
+// Llamamos a ListarPeticiones() al cargar la página
 ListarPeticiones('');
 
-// Llamamos a ListarPeticiones() al cargar la página
-ListarPeticiones();
-
 // Establecemos la función para que se refresque cada 5 segundos
-setInterval(ListarPeticiones, 5000); // 5000 milisegundos = 5 segundos
+setInterval(() => {
+    ListarPeticiones(buscar_peticiones.value); // Pasar el valor actual del campo de búsqueda
+}, 5000); // 5000 milisegundos = 5 segundos
 
 
 function ListarPeticiones(valor) {
