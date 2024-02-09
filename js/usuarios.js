@@ -74,16 +74,36 @@ function cambiarEstadoUsuario(id) {
             var json = JSON.parse(ajax.responseText);
 
             if (json.success) {
-                Swal.fire({
-                    position: 'top-end',
-                    title: '¡Estado cambiado!',
-                    icon: 'success'
-                }).then(() => {
-                    window.location.href = '?message=estadocambiado&id=' + id;
-                });
+                if (json.email === 'admin@gmail.com') {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "No puedes desactivar al administrador",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    });
+                    return; // Detiene la ejecución del script si el email es 'admin@gmail.com'
+                } else {
+                    Swal.fire({
+                        position: 'top-end',
+                        title: '¡Estado cambiado!',
+                        icon: 'success'
+                    }).then(() => {
+                        window.location.href = '?message=estadocambiado&id=' + id;
+                    });
+                }
             } else {
-                alert('Error al cambiar el estado del usuario. Mensaje: ' + json.message);
-            }
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "No puedes desactivar al administrador",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                });
+                return; // Detiene la ejecución del script si el email es 'admin@gmail.com'
+        }
         } else {
             console.error('Error en la solicitud AJAX.');
         }
