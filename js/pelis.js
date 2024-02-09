@@ -9,10 +9,11 @@ buscar_peli.addEventListener("keyup", () => {
     }
 });
 
-function ListarPeli(valor) {
+function ListarPeli(valor, genero = '') {
     var resultado = document.getElementById('resultado_pelis');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
+    formdata.append('genero', genero);
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../listar/listarpelis.php');
     ajax.onload = function () {
@@ -76,7 +77,7 @@ function guardarCambios() {
                     icon: 'success'
                 }).then(() => {
                     history.pushState({}, null, '?message=peliculaeditada');
-                    ListarPeli(''); // Actualizar la lista de películas
+                    ListarPeli('', document.getElementById('genero_peli').value); // Actualizar la lista de películas con el género seleccionado
                 });
             } 
             
@@ -136,7 +137,7 @@ function realizarAccion(item, accion) {
                 }).then(() => {
                     history.pushState({}, null, '?message=peliculaeliminada');
                     if (accion === 'editar' || accion === 'eliminar') {
-                        ListarPeli(''); // Actualizar la lista de películas
+                        ListarPeli('', document.getElementById('genero_peli').value); // Actualizar la lista de películas con el género seleccionado
                     }
                 });
             } else {
@@ -155,11 +156,9 @@ function realizarAccion(item, accion) {
     ajax.send(formdata);
 }
 
-function listarPeliculasAutomaticamente() {
-    ListarPeli('');
-    setInterval(function () {
-        ListarPeli('');
-    }, 5000);
+function filtrarPorGenero() {
+    var genero = document.getElementById('genero_peli').value;
+    ListarPeli('', genero);
 }
 
-listarPeliculasAutomaticamente();
+
