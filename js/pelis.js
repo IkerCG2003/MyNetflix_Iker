@@ -28,7 +28,7 @@ function ListarPeli(valor, genero = '') {
                     contenido += '<div class="row">'; // Abrimos una nueva fila
                 }
                 contenido += '<div class="col-md-' + (12 / columnas_por_fila) + ' col-lg-' + (12 / columnas_por_fila) + ' grid-item">'; // Calculamos el ancho de la columna
-                contenido += '<img src="../img/' + item.nombre + '.jpg" alt="' + item.nombre + '">';
+                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.nombre + '">';
                 contenido += '<div class="movie-info">';
                 contenido += '<p class="movie-name">' + item.nombre + '</p>';
                 contenido += '<p>' + item.genero + '</p>';
