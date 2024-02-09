@@ -7,10 +7,12 @@ buscar_peticiones.addEventListener("keyup", () => {
 
 ListarPeticiones('');
 
-// Llamada a ListarPeticiones cada 5 segundos
-setInterval(function () {
-    ListarPeticiones(buscar_peticiones.value);
-}, 5000);
+// Llamamos a ListarPeticiones() al cargar la página
+ListarPeticiones();
+
+// Establecemos la función para que se refresque cada 5 segundos
+setInterval(ListarPeticiones, 5000); // 5000 milisegundos = 5 segundos
+
 
 function ListarPeticiones(valor) {
     var resultado = document.getElementById('resultado_registro_usuarios');
@@ -35,8 +37,8 @@ function ListarPeticiones(valor) {
                     tabla += "<td>";
                     tabla += "<div class='button-container'>";
                     tabla += "<div class='btn-container'>";
-                    tabla += "<button type='button' class='btn btn-success' onclick='Aceptar(" + JSON.stringify(item) + ")'>Aceptar</button>";
-                    tabla += "<button type='button' class='btn btn-danger' onclick='Denegar(" + JSON.stringify(item) + ")'>Denegar</button>";
+                    tabla += "<button type='button' class='btn btn-success' onclick='AceptarPeticion(" + JSON.stringify(item) + ")'>Aceptar</button>";
+                    tabla += "<button type='button' class='btn btn-danger' onclick='DenegarPeticion(" + JSON.stringify(item) + ")'>Denegar</button>";
                     tabla += "</div>";
                     tabla += "</div>";
                     tabla += "</td></tr>";
@@ -50,35 +52,33 @@ function ListarPeticiones(valor) {
     ajax.send(formdata);
 }
 
-function Aceptar(item) {
-    EnviarAccion(item, 'aceptar');
+function AceptarPeticion(item) {
+    ConfirmarAccion(item, 'aceptar');
 }
 
-function Denegar(item) {
-    EnviarAccion(item, 'denegar');
+function DenegarPeticion(item) {
+    ConfirmarAccion(item, 'denegar');
 }
 
-function EnviarAccion(item, accion) {
+function ConfirmarAccion(item, accion) {
     var formdata = new FormData();
     formdata.append('item', JSON.stringify(item));
 
     Swal.fire({
         title: '¿Estás seguro?',
-        text: 'Esta acción cambiará el estado de la petición.',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, realizar acción'
+        confirmButtonText: 'Sí'
     }).then((result) => {
         if (result.isConfirmed) {
-            // If confirmed, proceed with the action
-            realizarAccion(item, accion);
+            RealizarAccion(item, accion);
         }
     });
 }
 
-function realizarAccion(item, accion) {
+function RealizarAccion(item, accion) {
     var formdata = new FormData();
     formdata.append('item', JSON.stringify(item));
 
@@ -90,8 +90,7 @@ function realizarAccion(item, accion) {
 
             if (json.success) {
                 Swal.fire({
-                    title: '¡Acción realizada!',
-                    text: 'La petición ha sido ' + accion + 'da.',
+                    title: '¡Hecho!',
                     icon: 'success'
                 }).then(() => {
                     history.pushState({}, null, '?message=user' + accion);

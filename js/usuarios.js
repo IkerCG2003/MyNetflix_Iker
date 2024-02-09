@@ -77,7 +77,6 @@ function cambiarEstadoUsuario(id) {
                 Swal.fire({
                     position: 'top-end',
                     title: '¡Estado cambiado!',
-                    text: 'El estado del usuario ha sido modificado.',
                     icon: 'success'
                 }).then(() => {
                     window.location.href = '?message=estadocambiado&id=' + id;

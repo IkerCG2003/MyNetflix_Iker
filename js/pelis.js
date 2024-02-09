@@ -2,14 +2,19 @@ const buscar_peli = document.getElementById("buscar_peli");
 
 buscar_peli.addEventListener("keyup", () => {
     const valor = buscar_peli.value;
-    if (valor == "") {
+    if (valor == "") 
+    {
         ListarPeli('');
-    } else {
+    } 
+    
+    else 
+    {
         ListarPeli(valor);
     }
 });
 
-function ListarPeli(valor) {
+function ListarPeli(valor) 
+{
     var resultado = document.getElementById('resultado_pelis');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
@@ -18,26 +23,28 @@ function ListarPeli(valor) {
     ajax.onload = function () {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
-            var contenido = '<div class="grid-container">';
+            var cantidad_peliculas = json.length;
+            var columnas_por_fila = Math.min(5, cantidad_peliculas); // No más de 5 columnas por fila
+            var contenido = '<div class="row">'; // Abrimos la fila
             json.forEach(function (item, index) {
-                // Abre una nueva fila cada 5 elementos
-                if (index % 5 === 0) {
-                    contenido += '</div>'; 
-                    contenido += '<div class="grid-container">'; 
+                if (index > 0 && index % columnas_por_fila === 0) {
+                    contenido += '</div>'; // Cerramos la fila actual
+                    contenido += '<div class="row">'; // Abrimos una nueva fila
                 }
-                // Agrega el contenido de cada película
-                contenido += '<div class="col-md-2 grid-item">';
+                contenido += '<div class="col-md-' + (12 / columnas_por_fila) + ' col-lg-' + (12 / columnas_por_fila) + ' grid-item">'; // Calculamos el ancho de la columna
                 contenido += '<img src="../img/' + item.nombre + '.jpg" alt="' + item.nombre + '">';
+                contenido += '<div class="movie-info">'
                 contenido += '<p class="movie-name">' + item.nombre + '</p>';
-                contenido += '<p class="movie-info">' + item.genero + '</p>';
-                contenido += '<p class="movie-info">Me Gustas: ' + item.cantidadmegustas + '</p>';
+                contenido += '<p>' + item.genero + '</p>';
+                contenido += '<p>Me Gustas: ' + item.cantidadmegustas + '</p>';
                 contenido += "<div class='btn-container'>";
                 contenido += "<button type='button' class='btn btn-warning' onclick='Editar(" + JSON.stringify(item) + ")'>Editar</button>";
                 contenido += "<button type='button' class='btn btn-danger' onclick='Eliminar(" + JSON.stringify(item) + ")'>Eliminar</button>";
-                contenido += "</div>"; // Cierre de div 'btn-container'
-                contenido += '</div>'; // Cierre de div 'col-md-2 grid-item'
+                contenido += "</div>"; // Cerramos btn-container
+                contenido += '</div>'; // Cerramos movie-info
+                contenido += '</div>'; // Cerramos grid-item
             });
-            contenido += '</div>'; // Cierre de div 'grid-container'
+            contenido += '</div>'; // Cerramos la última fila
             resultado.innerHTML = contenido;
         } else {
             resultado.innerHTML = '<p>Error al cargar los datos.</p>';
@@ -46,73 +53,89 @@ function ListarPeli(valor) {
     ajax.send(formdata);
 }
 
-// Lógica para añadir película
 const btnAnadirPelicula = document.getElementById('btn-insertar');
 
 btnAnadirPelicula.addEventListener('click', () => {
-    fetch('../validaciones/inserciones/insertar.php', {
+    fetch('../validaciones/inserciones/insertar.php', 
+    {
     })
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        // Actualizar la lista después de la inserción
         ListarPeli('');
     })
-    .catch(error => {
+    
+    .catch(error => 
+        {
         console.error('Error:', error);
     });
 });
 
-function Eliminar(item) {
+function Eliminar(item) 
+{
     EnviarAccion(item, 'eliminar');
 }
 
-function EnviarAccion(item, accion) {
+function EnviarAccion(item, accion) 
+{
     Swal.fire({
         title: '¿Estás seguro?',
-        text: 'Esta acción cambiará el estado de la película.',
+        position: 'top-end',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, realizar acción'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Si se confirma, proceder con la acción
+        confirmButtonText: 'Sí, eliminar película'
+    }).then((result) => 
+    {
+        if (result.isConfirmed) 
+        {
             realizarAccion(item, accion);
         }
     });
 }
 
-function realizarAccion(item, accion) {
+function realizarAccion(item, accion) 
+{
     var formdata = new FormData();
     formdata.append('item', JSON.stringify(item));
 
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/registros/' + accion + '.php');
-    ajax.onload = function () {
-        if (ajax.status == 200) {
+    ajax.onload = function () 
+    {
+        if (ajax.status == 200) 
+        {
             var json = JSON.parse(ajax.responseText);
 
-            if (json.success) {
+            if (json.success) 
+            {
                 Swal.fire({
-                    title: '¡Acción realizada!',
-                    text: 'La película ha sido ' + accion + 'da.',
+                    position: 'top-end',
+                    title: '¡Pelicula eliminada!',
                     icon: 'success'
                 }).then(() => {
                     history.pushState({}, null, '?message=peliculaeliminada');
-                    if (accion === 'editar' || accion === 'eliminar') {
-                        ListarPeli(''); // Corregido aquí para llamar a ListarPeli
+                    if (accion === 'editar' || accion === 'eliminar') 
+                    {
+                        ListarPeli(''); 
                     }
                 });
-            } else {
+            } 
+            
+            else 
+            {
                 Swal.fire({
+                    position: 'top-end',
                     title: 'Error',
                     text: 'Error al ' + accion + ' la película. Mensaje: ' + json.message,
                     icon: 'error'
                 });
             }
-        } else {
+        } 
+        
+        else 
+        {
             console.error('Error en la solicitud AJAX.');
         }
     };
@@ -120,15 +143,12 @@ function realizarAccion(item, accion) {
     ajax.send(formdata);
 }
 
-// Función para listar películas y actualizar cada 5 segundos
 function listarPeliculasAutomaticamente() {
-    // Llamar a la función para listar películas
     ListarPeli('');
-    // Configurar la actualización cada 5 segundos
-    setInterval(function() {
+    setInterval(function() 
+    {
         ListarPeli('');
-    }, 5000); // 5000 milisegundos = 5 segundos
+    }, 5000);
 }
 
-// Llamar a la función para listar películas automáticamente
 listarPeliculasAutomaticamente();

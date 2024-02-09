@@ -2,14 +2,14 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f2f2f2;
+    background-color: lightblue;
 }
 
 /* Contenedor principal */
 .container {
     width: 95%;
     margin: 20px auto; 
-    background-color: #fff;
+    background-color: rgb(108, 108, 176);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -176,36 +176,42 @@ form {
     background-color: #adaf2f;
 }
 
-.movie-name {
-    height: 60px;
-    font-weight: bold;
-    display: flex; /* Usar flexbox */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    word-wrap: break-word; /* Permite que las palabras largas se dividan en varias líneas */
-    overflow-wrap: break-word; /* Para navegadores más antiguos que no admiten word-wrap */
-    margin-bottom: -5PX;
-    text-align: center;
+/* Define una clase para crear filas con 5 columnas */
+.column-5 {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.movie-info {
-    margin-bottom: 10px;
+/* Establece el ancho de cada columna para que haya 5 columnas en una fila */
+.column-5 > * {
+    width: 20%; 
+    box-sizing: border-box;
+    padding: 10px;
 }
 
+/* Estilos para las películas */
+.grid-item {
+    margin: 10px; 
+}
+
+
+/* Imagen */
 img {
-    width: 150px;
-    height: 250px;
+    height: 300px;
+    width: 200px;
     border-radius: 5px;
 }
 
-.grid-container {
-    display: flex;
+.movie-info {
+    background-color: #ccc;
+    text-align: center;
+    width: 200px;
+    height: 160px;
+    margin-bottom: 10px;
+    border-radius: 5px;
 }
 
-.grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.movie-name {
+    font-weight: bolder;
 }
-
 
