@@ -210,10 +210,20 @@ img {
     background-color: #ccc;
     text-align: center;
     width: 200px;
-    height: 150px;
+    height: 190px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
+
+.movie-info-top {
+    background-color: #ccc;
+    text-align: center;
+    width: 200px;
+    height: 140px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
 
 .movie-name {
     font-weight: bolder;

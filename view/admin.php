@@ -245,6 +245,47 @@ include_once('../herramientas/conexion.php');
         </div>
     </div>
 
+    <!-- Modal para editar película -->
+    <div class="modal fade" id="modalEditarPelicula" tabindex="-1" role="dialog" aria-labelledby="modalEditarPeliculaLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarPeliculaLabel">Editar película</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmEditarPelicula" enctype="multipart/form-data">
+                        <input type="hidden" id="id_pelicula_editar" name="id_pelicula_editar">
+                        <div class="form-group">
+                            <label for="titulo_peli_editar">Título:</label>
+                            <input type="text" class="form-control" id="titulo_peli_editar" name="titulo_peli_editar">
+                        </div>
+                        <div class="form-group">
+                            <label for="genero_peli_editar">Género:</label>
+                            <select class="form-control" id="genero_peli_editar" name="genero_peli_editar">
+                                <option value="" disabled selected>-- Selecciona una opción --</option>
+                                <option value="Animacion">Animación</option>
+                                <option value="Acción">Acción</option>
+                                <option value="Drama">Drama</option>
+                                <option value="Fantasía">Fantasía</option>
+                                <option value="Crimen">Crimen</option>
+                                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                                <option value="Aventura">Aventura</option>
+                                <option value="Thriller">Thriller</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Musical">Musical</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Scripts JS -->
     <script src="../js/pelis.js"></script>
     <script src="../js/top5.js"></script>
@@ -256,5 +297,6 @@ include_once('../herramientas/conexion.php');
             ListarPeli(''); // Listamos las películas
         });
     </script>
+    
 </body>
 </html>
