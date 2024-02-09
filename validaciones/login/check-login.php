@@ -10,6 +10,19 @@ try
 {
     include("../../herramientas/conexion.php");
 
+    // Comprobación si el correo está en tbl_registros
+    $sql_registro = "SELECT * FROM tbl_registros WHERE email_user = :email";
+    $stmt_registro = $pdo->prepare($sql_registro);
+    $stmt_registro->bindParam(':email', $email);
+    $stmt_registro->execute();
+    $row_registro = $stmt_registro->fetch(PDO::FETCH_ASSOC);
+
+    if ($row_registro) 
+    {
+        header("Location: ../../view/login.php?error=solicitudpendiente");
+        exit();
+    }
+
     // Utilizamos parámetros con marcadores de posición para prevenir inyecciones SQL
     $sql = "SELECT * FROM tbl_usuarios WHERE email = :email";
     

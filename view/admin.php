@@ -297,6 +297,5 @@ include_once('../herramientas/conexion.php');
             ListarPeli(''); // Listamos las películas
         });
     </script>
-    
 </body>
 </html>

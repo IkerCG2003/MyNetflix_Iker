@@ -40,6 +40,26 @@
     ?>  
 
     <?php
+        if (isset($_GET["error"]) && $_GET["error"] === "solicitudpendiente") {
+            ?>
+                <script>
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "La solicitud está pendiente de ser aceptada",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        timerProgressBar: true
+                    });
+                </script>
+            <?php
+        }
+    ?>  
+
+
+    
+
+    <?php
         if (isset($_GET["error"]) && $_GET["error"] === "userinactivo") {
             ?>
                 <script>
