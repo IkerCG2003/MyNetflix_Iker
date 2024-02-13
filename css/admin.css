@@ -76,7 +76,7 @@ form {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: #fff; 
+    color: #000;
 }
 
 .form-control:focus {
@@ -338,4 +338,17 @@ form {
 
 label {
     color: rgb(0, 0, 0);
+}
+
+input[type='text'],
+input[type='select'] {
+    color: black; /* Establecer el color del texto a negro */
+}
+
+.me-gusta-activo {
+    color: red; /* Color cuando está activo */
+}
+
+.me-gusta-activo i {
+    color: red; /* Color del ícono cuando está activo */
 }

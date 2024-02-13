@@ -218,7 +218,7 @@ include_once('../herramientas/conexion.php');
                     </div>
                     <div class="form-group">
                         <select name="genero_peli" id="genero_peli" class="form-control mr-2" onchange="filtrarPorGenero()">
-                            <option value="" disabled selected>-- Selecciona una opción --</option>
+                            <option value="">Mostrar todas</option>
                             <option value="Animacion">Animación</option>
                             <option value="Acción">Acción</option>
                             <option value="Drama">Drama</option>
@@ -232,7 +232,6 @@ include_once('../herramientas/conexion.php');
                         </select>
                     </div>
                     <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#modalAnadirPelicula">Añadir Película</button>
-                    <button class="btn btn-danger">Eliminar filtro</button>
                 </form>
             </div>
         </div>
@@ -306,7 +305,7 @@ include_once('../herramientas/conexion.php');
                         <div class="form-group">
                             <label for="genero_peli_editar">Género:</label>
                             <select class="form-control" id="genero_peli_editar" name="genero_peli_editar">
-                                <option value="" disabled selected>-- Selecciona una opción --</option>
+                                <option value="">Mostrar todas</option>
                                 <option value="Animacion">Animación</option>
                                 <option value="Acción">Acción</option>
                                 <option value="Drama">Drama</option>
