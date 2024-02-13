@@ -151,12 +151,23 @@ function cambiarEstadoUsuario(id)
     ajax.send(formdata);
 }
 
-function EditarUser(item) 
-{
-    $('#modalEditarUser').modal('show'); 
+function EditarUser(item) {
+    if (item.email === 'admin@gmail.com') {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'No puedes editar al administrador',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+        });
+        return;
+    }
+
+    $('#modalEditarUser').modal('show');
     document.getElementById("id_usuario_editar").value = item.id;
-    document.getElementById('nombre_user_editar').value = item.username; 
-    document.getElementById('email_user_editar').value = item.email; 
+    document.getElementById('nombre_user_editar').value = item.username;
+    document.getElementById('email_user_editar').value = item.email;
 }
 
 function guardarCambios() 
