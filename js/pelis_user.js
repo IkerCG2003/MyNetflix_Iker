@@ -25,9 +25,9 @@ function ListarPeli(valor, genero = '') {
                 }
                 contenido += '<div class="col-md-2 col-lg-2 grid-item">';
                 contenido += '<div class="movie-container">';
-                contenido += `<img src="../img/${item.portada}.jpg" alt="${item.nombre}">`;
+                contenido += `<img src="../img/${item.portada}.jpg" alt="${item.titulo}">`;
                 contenido += '<div class="movie-info">';
-                contenido += `<p class="movie-name">${item.nombre}</p>`;
+                contenido += `<p class="movie-name">${item.titulo}</p>`;
                 contenido += `<p>${item.genero}</p>`;
                 contenido += `<p class="me-gusta" data-id="${item.id}" onclick="toggleMeGusta(this)">${item.me_gusta === 'SI' ? '<i class="bi bi-heart-fill"></i> Quitar de Me Gusta' : '<i class="bi bi-heart"></i> Me Gusta'}</p>`;
                 contenido += '</div>';

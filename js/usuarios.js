@@ -172,7 +172,7 @@ function guardarCambios() {
                 $('#modalEditarUser').modal('hide');
                 Swal.fire({
                     position: 'top-end',
-                    title: 'Usuario editado!',
+                    title: '¡Usuario editado!',
                     icon: 'success'
                 }).then(() => {
                     history.pushState({}, null, '?message=usuarioeditado');

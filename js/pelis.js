@@ -32,9 +32,9 @@ function ListarPeli(valor, genero = '') {
                 }
                 contenido += '<div class="col-md-2 col-lg-2 grid-item">'; // Establecer el tamaño de la columna
                 contenido += '<div class="movie-container">'; // Contenedor de película
-                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.nombre + '">'; // Imagen de la película
+                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.titulo + '">'; // Imagen de la película
                 contenido += '<div class="movie-info">'; // Contenedor de información
-                contenido += '<p class="movie-name">' + item.nombre + '</p>'; // Nombre de la película
+                contenido += '<p class="movie-name">' + item.titulo + '</p>'; // Nombre de la película
                 contenido += '<p>' + item.genero + '</p>'; // Género de la película
                 contenido += '<p>Me Gustas: ' + item.cantidadmegustas + '</p>'; // Cantidad de "Me Gustas"
                 contenido += '</div>'; // Cerrar contenedor de información
@@ -64,11 +64,10 @@ function EditarPeli(item) {
     document.getElementById("id_pelicula_editar").value = item.id;
     document.getElementById('titulo_peli_editar').value = item.titulo; // Establecer el título de la película en el formulario de edición
     document.getElementById('genero_peli_editar').value = item.genero; // Establecer el género de la película en el formulario de edición
-    document.getElementById('titulo_peli_editar').value = item.nombre; // Establecer el nombre de la película en el formulario de edición
 }
 
 // Función para guardar cambios al editar una película
-function guardarCambios() {
+function guardarCambiosPelis() {
     var formdata = new FormData(document.getElementById('frmEditarPelicula')); // Obtener los datos del formulario de edición
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/aplicarcambios/pelis.php');
@@ -87,7 +86,7 @@ function guardarCambios() {
                 }).then(() => {
                     // Recargar la lista de películas después de editar
                     history.pushState({}, null, '?message=peliculaeditada');
-                    ListarPeli('', document.getElementById('genero_peli').value);
+                    ListarPeli('', document.getElementById('id_pelicula_editar').value);
                 });
             } else {
                 // Si hubo un error al guardar los cambios, mostrar un mensaje de error

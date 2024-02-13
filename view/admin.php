@@ -208,7 +208,7 @@ include_once('../herramientas/conexion.php');
     </section>
 
     <section class="container" id="seccion_pelis">
-        <h2>Sección del catálogo de películas</h2>
+        <h2>Catálogo</h2>
         <div class="row align-items-center">
             <div class="col-md-6">
                 <form action="" method="post" id="frmbusqueda" class="form-inline">
@@ -216,9 +216,8 @@ include_once('../herramientas/conexion.php');
                         <label for="buscar_peli" class="mr-2">Buscar:</label>
                         <input type="text" name="buscar_peli" id="buscar_peli" placeholder="Buscar por título..." class="form-control">
                     </div>
-                    
-                    <div class="form-group mr-2">
-                        <select name="genero_peli" id="genero_peli" class="form-control">
+                    <div class="form-group">
+                        <select name="genero_peli" id="genero_peli" class="form-control mr-2" onchange="filtrarPorGenero()" style="color: black;">
                             <option value="">Mostrar todas</option>
                             <option value="Animacion">Animación</option>
                             <option value="Acción">Acción</option>
@@ -232,8 +231,6 @@ include_once('../herramientas/conexion.php');
                             <option value="Musical">Musical</option>
                         </select>
                     </div>
-                    
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAnadirPelicula">Añadir Película</button>
                 </form>
             </div>
         </div>
@@ -307,7 +304,7 @@ include_once('../herramientas/conexion.php');
                         <div class="form-group">
                             <label for="genero_peli_editar">Género:</label>
                             <select class="form-control" id="genero_peli_editar" name="genero_peli_editar">
-                                <option value="">Mostrar todas</option>
+                                <option value="" disabled selected>-- Selecciona una opción --</option>
                                 <option value="Animacion">Animación</option>
                                 <option value="Acción">Acción</option>
                                 <option value="Drama">Drama</option>
@@ -320,7 +317,7 @@ include_once('../herramientas/conexion.php');
                                 <option value="Musical">Musical</option>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+                        <button type="button" class="btn btn-primary" onclick="guardarCambiosPelis()">Guardar cambios</button>
                     </form>
                 </div>
             </div>
@@ -362,14 +359,16 @@ include_once('../herramientas/conexion.php');
     <script src="../js/top5.js"></script>
     <script src="../js/peticiones.js"></script>
     <script src="../js/usuarios.js"></script>
+
     <!-- JS LISTAR USUARIOS Y PELOS -->
     <script>
         document.addEventListener("DOMContentLoaded", function() 
         {
-            ListarUsers(1); // Inicialmente mostramos la primera página
+            ListarUsers(''); // Inicialmente mostramos la primera página
             ListarPeli(''); // Listamos las películas
         });
     </script>
+
     <!-- JS HEADER -->
     <script>
         window.addEventListener('scroll', function() 
@@ -382,6 +381,7 @@ include_once('../herramientas/conexion.php');
                 }
         });
     </script>
+    
     <!-- JS NAVBAR -->
     <script>
         window.addEventListener('scroll', function() 
@@ -394,8 +394,8 @@ include_once('../herramientas/conexion.php');
                 navbar.classList.remove('fixed-top');
             }
         });
-
     </script>
+    
     <!-- JS USUARIOS -->
     <script>
         // Obtener los enlaces del menú

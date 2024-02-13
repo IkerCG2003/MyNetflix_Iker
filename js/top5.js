@@ -21,9 +21,9 @@ function ListarTop5() {
                 }
                 contenido += '<div class="col-md-2 grid-item">'; // Establecer el tamaño de la columna
                 contenido += '<div class="movie-container">'; // Contenedor de película
-                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.nombre + '">'; // Imagen de la película
+                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.titulo + '">'; // Imagen de la película
                 contenido += '<div class="movie-info-top">'; // Contenedor de información
-                contenido += '<p class="movie-name">' + item.nombre + '</p>'; // Nombre de la película
+                contenido += '<p class="movie-name">' + item.titulo + '</p>'; // Nombre de la película
                 contenido += '<p>' + item.genero + '</p>'; // Género de la película
                 contenido += '<p>Me Gustas: ' + item.cantidadmegustas + '</p>'; // Cantidad de "Me Gustas"
                 contenido += '</div>'; // Cerrar contenedor de información
