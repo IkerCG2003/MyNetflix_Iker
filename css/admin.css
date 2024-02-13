@@ -352,3 +352,95 @@ input[type='select'] {
 .me-gusta-activo i {
     color: red; /* Color del ícono cuando está activo */
 }
+
+/* Estilos para pantallas con ancho máximo de 700px */
+@media screen and (max-width: 700px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .form-control {
+        width: 70%;
+    }
+
+    #buscar_peli {
+        width: 60vw;
+    }
+}
+
+/* Estilos para pantallas con ancho máximo de 650px */
+@media screen and (max-width: 650px) {
+    .container {
+        width: 85%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .form-control {
+        width: 80%;
+    }
+
+    #buscar_peli {
+        width: 70vw;
+    }
+}
+
+/* Estilos para pantallas con ancho máximo de 600px */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    .form-control {
+        width: 90%;
+    }
+
+    #buscar_peli {
+        width: 80vw;
+    }
+}
+
+/* Estilos para pantallas con ancho máximo de 550px */
+@media screen and (max-width: 550px) {
+    .container {
+        width: 75%;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .form-control {
+        width: 95%;
+    }
+
+    #buscar_peli {
+        width: 90vw;
+    }
+}
