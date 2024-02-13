@@ -216,8 +216,9 @@ include_once('../herramientas/conexion.php');
                         <label for="buscar_peli" class="mr-2">Buscar:</label>
                         <input type="text" name="buscar_peli" id="buscar_peli" placeholder="Buscar por título..." class="form-control">
                     </div>
-                    <div class="form-group">
-                        <select name="genero_peli" id="genero_peli" class="form-control mr-2" onchange="filtrarPorGenero()">
+                    
+                    <div class="form-group mr-2">
+                        <select name="genero_peli" id="genero_peli" class="form-control">
                             <option value="">Mostrar todas</option>
                             <option value="Animacion">Animación</option>
                             <option value="Acción">Acción</option>
@@ -231,7 +232,8 @@ include_once('../herramientas/conexion.php');
                             <option value="Musical">Musical</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#modalAnadirPelicula">Añadir Película</button>
+                    
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAnadirPelicula">Añadir Película</button>
                 </form>
             </div>
         </div>

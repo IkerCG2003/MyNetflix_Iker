@@ -84,10 +84,6 @@ form {
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
 
-#buscar_peli {
-    width: 40vw;
-}
-
 /* Estilos para los botones */
 .btn-container {
     display: flex;
@@ -119,7 +115,7 @@ form {
 }
 
 .btn-warning {
-    background-color: #f3eb00;
+    background-color: #dcdcda;
     color: #000000;
     border: 1px solid #000000;
 }
@@ -134,7 +130,7 @@ form {
 }
 
 .btn-warning:hover {
-    background-color: #adaf2f;
+    background-color: #868682;
 }
 
 /* Header */
@@ -352,6 +348,30 @@ input[type='select'] {
 .me-gusta-activo i {
     color: red; /* Color del ícono cuando está activo */
 }
+
+/* Estilos para el formulario */
+.form-inline .form-group {
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+/* Estilos para el input de búsqueda */
+#buscar_peli {
+    width: auto; /* Anchura automática para adaptarse al contenido */
+    flex-grow: 1; /* Permite que el input de búsqueda crezca para llenar el espacio disponible */
+}
+
+/* Estilos para el select de género */
+#genero_peli {
+    flex-shrink: 0; /* No permitir que el select se encoja */
+    margin-right: 10px; /* Espacio a la derecha del select */
+}
+
+/* Estilos para el botón "Añadir Película" */
+#btn-anadir-pelicula {
+    flex-shrink: 0; /* No permitir que el botón se encoja */
+    margin-left: 10px; /* Espacio a la izquierda del botón */
+}
+
 
 /* Estilos para pantallas con ancho máximo de 700px */
 @media screen and (max-width: 700px) {

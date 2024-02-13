@@ -83,6 +83,29 @@ a:hover {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Estilos para el formulario */
+.form-inline .form-group {
+    margin-bottom: 0; /* Elimina el margen inferior */
+}
+
+/* Estilos para el input de búsqueda */
+#buscar_peli {
+    width: auto; /* Anchura automática para adaptarse al contenido */
+    flex-grow: 1; /* Permite que el input de búsqueda crezca para llenar el espacio disponible */
+}
+
+/* Estilos para el select de género */
+#genero_peli {
+    flex-shrink: 0; /* No permitir que el select se encoja */
+    margin-right: 10px; /* Espacio a la derecha del select */
+}
+
+/* Estilos para el botón "Añadir Película" */
+.btn-success {
+    margin-left: auto; /* Mueve el botón "Añadir Película" a la derecha */
+}
+
+
 /* Media query para pantallas de 700px */
 @media screen and (max-width: 700px) {
     body {
