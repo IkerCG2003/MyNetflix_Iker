@@ -88,23 +88,19 @@ function mostrarSweetAlert(id)
     });
 }
 
-function cambiarEstadoUsuario(id) 
-{
+function cambiarEstadoUsuario(id) {
     var formdata = new FormData();
     formdata.append('id', JSON.stringify(id));
 
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/registros/estadouser.php');
-    ajax.onload = function () 
-    {
-        if (ajax.status == 200) 
-        {
+    ajax.onload = function () {
+        if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
 
-            if (json.success) 
-            {
-                if (json.email === 'admin@gmail.com') 
-                {
+            if (json.success) {
+                if (json.email === 'admin@gmail.com') {
+                    // Si el usuario es admin@gmail.com, no hacer nada
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -113,11 +109,8 @@ function cambiarEstadoUsuario(id)
                         timer: 1500,
                         timerProgressBar: true
                     });
-                    return; 
-                } 
-                
-                else 
-                {
+                } else {
+                    // Si el usuario no es admin@gmail.com, cambiar el estado
                     Swal.fire({
                         position: 'top-end',
                         title: '¡Estado cambiado!',
@@ -126,10 +119,7 @@ function cambiarEstadoUsuario(id)
                         window.location.href = '?message=estadocambiado&id=' + id;
                     });
                 }
-            } 
-            
-            else 
-            {
+            } else {
                 Swal.fire({
                     position: "top-end",
                     icon: "error",
@@ -138,12 +128,8 @@ function cambiarEstadoUsuario(id)
                     timer: 1500,
                     timerProgressBar: true
                 });
-                return; 
             }
-        } 
-        
-        else 
-        {
+        } else {
             console.error('Error en la solicitud AJAX.');
         }
     };
@@ -213,3 +199,64 @@ function guardarCambios()
     ajax.send(formdata);
 }
 
+function EliminarUser(item) {
+    if (item.email === 'admin@gmail.com') {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'No puedes eliminar al administrador',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+        });
+        return;
+    }
+
+    // Mostrar cuadro de diálogo de SweetAlert para confirmar la eliminación
+    Swal.fire({
+        title: '¿Quieres eliminar este usuario?',
+        position: 'top-end',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si se confirma la eliminación, enviar solicitud AJAX para eliminar el usuario
+            var formdata = new FormData();
+            formdata.append('id', item.id);
+
+            var ajax = new XMLHttpRequest();
+            ajax.open('POST', '../validaciones/registros/eliminarusuario.php');
+            ajax.onload = function () {
+                if (ajax.status == 200) {
+                    var json = JSON.parse(ajax.responseText);
+
+                    if (json.success) {
+                        Swal.fire({
+                            position: 'top-end',
+                            title: '¡Usuario eliminado!',
+                            icon: 'success'
+                        }).then(() => {
+                            // Recargar la lista de usuarios después de la eliminación
+                            ListarUsers('');
+                        });
+                    } else {
+                        Swal.fire({
+                            position: 'top-end',
+                            title: 'Error',
+                            text: 'Error al eliminar el usuario. Mensaje: ' + json.message,
+                            icon: 'error'
+                        });
+                    }
+                } else {
+                    console.error('Error en la solicitud AJAX.');
+                }
+            };
+
+            ajax.send(formdata);
+        }
+    });
+}
