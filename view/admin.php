@@ -134,75 +134,71 @@ include_once('../herramientas/conexion.php');
     </section>
 
     <section class="container" id="seccion_usuarios">
-        <h2>Sección de usuarios</h2>
-        <div>
+    <h2>Sección de usuarios</h2>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <ul id="menu">            
+            <li><a href="#" id="peticiones_link">Peticiones de registro</a></li>
+            <li><a href="#" id="usuarios_link">Usuarios registrados</a></li>
+        </ul>
+    </nav>
+    
+    <div id="usuarios_contenedor">
+        <!-- Contenido de peticiones de registro -->
+        <div id="peticiones_usuarios">
+            <br>
             <div>
-                <div id="peticiones_usuarios">
-                    <div>
-                        <h3>Peticiones de registro</h3>
+                <form action="" method="post" id="frmbusqueda_peticiones">
+                    <div class="form-group">
+                        <label for="buscar_peticiones">Buscar:</label>
+                        <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar peticiones..." class="form-control">
                     </div>
-
-                    <div>
-                        <form action="" method="post" id="frmbusqueda">
-                            <div class="form-group">
-                                <label for="buscar_peticiones">Buscar:</label>
-                                <input type="text" name="buscar_peticiones" id="buscar_peticiones" placeholder="Buscar peticiones..." class="form-control">
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="table-container">
-                        <table class="table-section">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th class="email">Email</th>
-                                    <th class="acciones">Acciones</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="resultado_registro_usuarios"></tbody>
-                        </table>
-                    </div>
-                </div>
+                </form>
             </div>
-
-            <div>
-                <section id="usuarios_registrados" class="section">
-                    <div>
-                        <h3>Usuarios registrados</h3>
-                    </div>
-
-                    <div>
-                        <form action="" method="post" id="frmbusqueda">
-                            <div class="form-group">
-                                <label for="buscar_user">Buscar</label>
-                                <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar usuarios..." class="form-control">
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="table-container">
-                        <table class="table-section">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Estado</th>
-                                    <th>Operaciones</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="resultado_usuarios_registrados"></tbody>
-                        </table>
-                    </div>
-                </section>
+            <div class="table-container">
+                <table class="table-section">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th class="email">Email</th>
+                            <th class="acciones">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultado_registro_usuarios"></tbody>
+                </table>
             </div>
         </div>
-    </section>
+
+        <!-- Contenido de usuarios registrados -->
+        <section id="usuarios_registrados" class="section">
+            <div>
+                <form action="" method="post" id="frmbusqueda_usuarios">
+                    <div class="form-group">
+                        <label for="buscar_user">Buscar</label>
+                        <input type="text" name="buscar_user" id="buscar_user" placeholder="Buscar usuarios..." class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="table-container">
+                <table class="table-section">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Estado</th>
+                            <th>Operaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultado_usuarios_registrados"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
 
     <section class="container" id="seccion_top">
         <h2>Sección del TOP 5 de películas</h2>
@@ -398,6 +394,32 @@ include_once('../herramientas/conexion.php');
             }
         });
 
+    </script>
+    <!-- JS USUARIOS -->
+    <script>
+        // Obtener los enlaces del menú
+        const peticionesLink = document.getElementById("peticiones_link");
+        const usuariosLink = document.getElementById("usuarios_link");
+
+        // Obtener los contenedores de las secciones
+        const peticionesUsuarios = document.getElementById("peticiones_usuarios");
+        const usuariosRegistrados = document.getElementById("usuarios_registrados");
+
+        // Ocultar todas las secciones menos la primera por defecto
+        usuariosRegistrados.style.display = "none";
+
+        // Manejar eventos de clic en los enlaces del menú
+        peticionesLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            peticionesUsuarios.style.display = "block";
+            usuariosRegistrados.style.display = "none";
+        });
+
+        usuariosLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            usuariosRegistrados.style.display = "block";
+            peticionesUsuarios.style.display = "none";
+        });
     </script>
 </body>
 </html>

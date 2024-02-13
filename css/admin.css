@@ -2,17 +2,18 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: lightblue;
+    background-color: lightgray;
 }
 
 /* Contenedor principal */
 .container {
+    background-color: #f0f0f0;
     width: 95%;
-    margin: 20px auto; 
-    background-color: rgb(108, 108, 176);
+    margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    overflow: hidden; /* Evita que el contenido se desborde */
 }
 
 /* Títulos */
@@ -38,43 +39,6 @@ h2 {
     margin-top: 20px;
 }
 
-/* Estilos para la tabla */
-.table-container {
-    max-height: 70vh;
-    overflow-y: auto;
-    scrollbar-width: thin;
-}
-
-.table-section {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.table-section th, .table-section td {
-    padding: 16px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.table-section th {
-    background-color: #333;
-    color: #fff;
-}
-
-.table-section tbody tr:nth-child(odd) {
-    background-color: #f8f8f8;
-}
-
-.table-section tbody tr:nth-child(even) {
-    background-color: #ddd;
-}
-
-.table-section tbody tr:hover {
-    background-color: #ccc;
-}
 
 /* Estilos específicos para celdas de la tabla */
 .acciones {
@@ -104,24 +68,6 @@ form {
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
 
-/* Estilos para la barra de desplazamiento en navegadores WebKit */
-.table-container::-webkit-scrollbar {
-    width: 10px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 5px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-/* Sección específica con altura del 80% */
-#seccion_usuarios {
-    height: 140vh;
-}
 
 #buscar_peli {
     width: 40vw;
@@ -176,58 +122,6 @@ form {
     background-color: #adaf2f;
 }
 
-/* Define una clase para crear filas con 5 columnas */
-.column-5 {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-/* Establece el ancho de cada columna para que haya 5 columnas en una fila */
-.column-5 > * {
-    width: 20%; 
-    box-sizing: border-box;
-    padding: 10px;
-}
-
-.grid-item {
-    margin-right: 10px; /* Establece el margen derecho entre las imágenes */
-}
-
-/* Elimina el margen derecho de la última imagen en la fila */
-.row .grid-item:last-child {
-    margin-right: 0;
-}
-
-
-/* Imagen */
-img {
-    height: 300px;
-    width: 200px;
-    border-radius: 5px;
-}
-
-.movie-info {
-    background-color: #ccc;
-    text-align: center;
-    width: 200px;
-    height: 190px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-.movie-info-top {
-    background-color: #ccc;
-    text-align: center;
-    width: 200px;
-    height: 140px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-
-
-.movie-name {
-    font-weight: bolder;
-}
 
 /* Header */
 #header 
@@ -285,6 +179,92 @@ img {
   'opsz' 24
 }
 
+/* Estilos para la sección de usuarios */
+#seccion_usuarios {
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Estilos para el título de la sección */
+#seccion_usuarios h2 {
+    text-align: center; /* Centrado */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Estilos para el menú de pestañas */
+#menu {
+    margin-bottom: 20px; /* Espaciado inferior */
+    list-style: none; /* Sin viñetas */
+    padding: 0; /* Sin relleno */
+}
+
+#menu li {
+    display: inline-block; /* Mostrar en línea */
+    margin-right: 10px; /* Espaciado derecho entre pestañas */
+}
+
+#menu li a {
+    padding: 10px 20px; /* Relleno */
+    text-decoration: none; /* Sin subrayado */
+    color: #333; /* Color del texto */
+    background-color: #e0e0e0; /* Color de fondo */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px 5px 0 0; /* Bordes redondeados solo arriba */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+#menu li a:hover {
+    background-color: #ccc; /* Cambio de color al pasar el cursor */
+}
+
+/* Estilos para el contenido de las pestañas */
+.tab-content {
+    background-color: #fff; /* Color de fondo */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 0 0 10px 10px; /* Bordes redondeados solo abajo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Estilos para las tablas */
+.table-container {
+    max-height: 55vh; /* Altura máxima */
+    overflow-y: auto; /* Desplazamiento vertical si es necesario */
+    scrollbar-width: thin; /* Grosor de la barra de desplazamiento */
+}
+
+.table-section {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapso de bordes */
+    margin-top: 10px; /* Espaciado superior */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.table-section th,
+.table-section td {
+    padding: 16px; /* Relleno */
+    text-align: left; /* Alineación izquierda */
+    border: 1px solid #ddd; /* Borde */
+}
+
+.table-section th {
+    background-color: #333; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto del encabezado */
+}
+
+.table-section tbody tr:nth-child(odd) {
+    background-color: #f8f8f8; /* Color de fondo de filas impares */
+}
+
+.table-section tbody tr:nth-child(even) {
+    background-color: #ddd; /* Color de fondo de filas pares */
+}
+
+.table-section tbody tr:hover {
+    background-color: #ccc; /* Cambio de color al pasar el cursor */
+}
+
 .icon-container {
     display: flex;
     justify-content: center; /* Centra los iconos horizontalmente */
@@ -299,4 +279,64 @@ img {
 #cont-btn {
     display: flex;
     justify-content: center; /* Centra los iconos horizontalmente */
+}
+
+/* Estilos para las pestañas del menú */
+#menu {
+    padding: 0;
+    margin: 0;
+}
+
+#menu li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#menu li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-bottom: none; /* Para ocultar el borde inferior del último enlace */
+    border-radius: 5px 5px 0 0; /* Dar bordes redondeados solo en la parte superior */
+    color: #333;
+}
+
+#menu li a:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estilos para las películas */
+.movie-container {
+    border: 1px solid #ddd; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Relleno interno */
+    margin-bottom: 20px; /* Espacio inferior entre películas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.movie-container img {
+    width: 100%; /* Ancho completo */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+.movie-info {
+    text-align: center; /* Alineación centrada */
+    margin-bottom: 10px; /* Espacio inferior */
+}
+
+.movie-info p {
+    margin-bottom: 5px; /* Espacio inferior entre párrafos */
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+}
+
+/* Estilos específicos para los botones de películas */
+.movie-btn {
+    margin: 0 5px; /* Espacio entre botones */
 }
