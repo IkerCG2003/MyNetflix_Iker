@@ -2,25 +2,25 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #222; /* Fondo más oscuro */
-    color: #fff; /* Texto más claro */
+    background-color: #222; 
+    color: #fff;
 }
 
 /* Contenedor principal */
 .container {
-    background-color: #333; /* Color de fondo más oscuro */
+    background-color: #333; 
     width: 95%;
     margin: 20px auto;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     padding: 20px;
-    overflow: hidden; /* Evita que el contenido se desborde */
+    overflow: hidden; 
 }
 
 /* Títulos */
 h1,
 h3 {
-    color: #fff; /* Texto más claro */
+    color: #fff; 
     text-align: center;
 }
 
@@ -37,6 +37,7 @@ h5 {
     color: #000;
     font-weight: bolder
 }
+
 /* Filas y columnas flexibles */
 .row {
     display: flex;
@@ -75,7 +76,7 @@ form {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: #fff; /* Texto más claro */
+    color: #fff; 
 }
 
 .form-control:focus {
@@ -192,99 +193,98 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-/* Estilos para el título de la sección */
 #seccion_usuarios h2 {
-    text-align: center; /* Centrado */
-    color: #fff; /* Color del texto */
-    margin-bottom: 20px; /* Espaciado inferior */
+    text-align: center; 
+    color: #fff; 
+    margin-bottom: 20px; 
 }
 
 /* Estilos para el menú de pestañas */
 #menu {
-    margin-bottom: 20px; /* Espaciado inferior */
-    list-style: none; /* Sin viñetas */
-    padding: 0; /* Sin relleno */
+    margin-bottom: 20px; 
+    list-style: none; 
+    padding: 0; 
 }
 
 #menu li {
-    display: inline-block; /* Mostrar en línea */
-    margin-right: 10px; /* Espaciado derecho entre pestañas */
+    display: inline-block; 
+    margin-right: 10px; 
 }
 
 #menu li a {
-    padding: 10px 20px; /* Relleno */
-    text-decoration: none; /* Sin subrayado */
-    color: #fff; /* Color del texto */
-    background-color: #444; /* Color de fondo */
-    border: 1px solid #ccc; /* Borde */
-    border-radius: 5px 5px 0 0; /* Bordes redondeados solo arriba */
-    transition: background-color 0.3s ease; /* Transición suave */
+    padding: 10px 20px; 
+    text-decoration: none;
+    color: #fff; 
+    background-color: #444; 
+    border: 1px solid #ccc; 
+    border-radius: 5px 5px 0 0; 
+    transition: background-color 0.3s ease; 
 }
 
 #menu li a:hover {
-    background-color: #555; /* Cambio de color al pasar el cursor */
+    background-color: #555; 
 }
 
 /* Estilos para el contenido de las pestañas */
 .tab-content {
-    background-color: #555; /* Color de fondo */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 0 0 10px 10px; /* Bordes redondeados solo abajo */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    background-color: #555; 
+    padding: 20px; 
+    border-radius: 0 0 10px 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 /* Estilos para las tablas */
 .table-container {
-    max-height: 55vh; /* Altura máxima */
-    overflow-y: auto; /* Desplazamiento vertical si es necesario */
-    scrollbar-width: thin; /* Grosor de la barra de desplazamiento */
+    max-height: 55vh;
+    overflow-y: auto; 
+    scrollbar-width: thin; 
 }
 
 .table-section {
-    width: 100%; /* Ancho completo */
-    border-collapse: collapse; /* Colapso de bordes */
-    margin-top: 10px; /* Espaciado superior */
-    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; 
+    border-collapse: collapse;
+    margin-top: 10px; 
+    font-size: 16px; 
 }
 
 .table-section th,
 .table-section td {
-    padding: 16px; /* Relleno */
-    text-align: left; /* Alineación izquierda */
-    border: 1px solid #ddd; /* Borde */
+    padding: 16px; 
+    text-align: left; 
+    border: 1px solid #ddd; 
 }
 
 .table-section th {
-    background-color: #444; /* Color de fondo del encabezado */
-    color: #fff; /* Color del texto del encabezado */
+    background-color: #444; 
+    color: #fff; 
 }
 
 .table-section tbody tr:nth-child(odd) {
-    background-color: #666; /* Color de fondo de filas impares */
+    background-color: #666; 
 }
 
 .table-section tbody tr:nth-child(even) {
-    background-color: #555; /* Color de fondo de filas pares */
+    background-color: #555; 
 }
 
 .table-section tbody tr:hover {
-    background-color: #777; /* Cambio de color al pasar el cursor */
+    background-color: #777; 
 }
 
 .icon-container {
     display: flex;
-    justify-content: center; /* Centra los iconos horizontalmente */
-    gap: 30px; /* Espacio entre los iconos */
+    justify-content: center; 
+    gap: 30px;
 }
 
 .icon {
-    font-size: 24px; /* Tamaño del ícono */
-    cursor: pointer; /* Cambia el cursor al pasar por encima del ícono */
+    font-size: 24px; 
+    cursor: pointer; 
 }
 
 #cont-btn {
     display: flex;
-    justify-content: center; /* Centra los iconos horizontalmente */
+    justify-content: center; 
 }
 
 /* Estilos para las pestañas del menú */
@@ -304,8 +304,8 @@ form {
     text-decoration: none;
     background-color: #444;
     border: 1px solid #ccc;
-    border-bottom: none; /* Para ocultar el borde inferior del último enlace */
-    border-radius: 5px 5px 0 0; /* Dar bordes redondeados solo en la parte superior */
+    border-bottom: none; 
+    border-radius: 5px 5px 0 0; 
     color: #fff;
 }
 
@@ -315,12 +315,12 @@ form {
 
 /* Estilos para las películas */
 .movie-container {
-    background-color: #333; /* Fondo más oscuro */
-    border: 1px solid #666; /* Borde más oscuro */
+    background-color: #333; 
+    border: 1px solid #666; 
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
 .movie-container img {
@@ -329,7 +329,7 @@ form {
     height: auto;
     border-radius: 10px;
     margin-bottom: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Sombra más oscura */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); 
 }
 
 .movie-info p {
