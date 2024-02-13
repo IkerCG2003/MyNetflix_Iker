@@ -1,32 +1,33 @@
+// Obtener el elemento de búsqueda de usuario por su ID
 const buscar_user = document.getElementById("buscar_user");
 
-buscar_user.addEventListener("keyup", () => 
-{
+// Agregar un evento de tecla para realizar la búsqueda de usuarios mientras se escribe en el campo de búsqueda
+buscar_user.addEventListener("keyup", () => {
     const valor = buscar_user.value;
-    if (valor == "") 
-    {
+    if (valor == "") {
+        // Si el campo de búsqueda está vacío, listar todos los usuarios
         ListarUsers('');
-    } 
-    
-    else 
-    {
+    } else {
+        // Si hay un valor en el campo de búsqueda, listar usuarios que coincidan con ese valor
         ListarUsers(valor);
     }
 });
 
+// Iniciar la lista de usuarios al cargar la página
 ListarUsers('');
 
-document.addEventListener('click', function (e) 
-{
-    if (e.target.classList.contains('btn-estado')) 
-    {
+// Agregar un event listener para el clic en cualquier parte del documento
+document.addEventListener('click', function (e) {
+    // Verificar si el clic se realizó en un botón de cambiar estado de usuario
+    if (e.target.classList.contains('btn-estado')) {
+        // Obtener el ID del usuario al que se le quiere cambiar el estado y mostrar el mensaje de confirmación
         var idUsuario = e.target.getAttribute('data-id');
         mostrarSweetAlert(idUsuario);
     }
 });
 
-function ListarUsers(valor) 
-{
+// Función para listar usuarios
+function ListarUsers(valor) {
     var resultado = document.getElementById('resultado_usuarios_registrados');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
@@ -34,39 +35,37 @@ function ListarUsers(valor)
     ajax.open('POST', '../listar/listarusuarios.php');
     ajax.onload = function () {
         if (ajax.status == 200) {
+            // Procesar la respuesta y construir la tabla de usuarios
             var json = JSON.parse(ajax.responseText);
             var tabla = '';
-            json.forEach(function (item) 
-            {
+            json.forEach(function (item) {
                 tabla += "<tr>";
-                    tabla += "<td>" + item.id + "</td>";
-                    tabla += "<td>" + item.username + "</td>";
-                    tabla += "<td>" + item.email + "</td>";
-                    tabla += "<td>" + item.estado + "</td>";
-                    tabla += "<td>";
-                        tabla += "<div class='icon-container'>";
-                            tabla += "<i class='bi bi-pencil-square icon' onclick='EditarUser(" + JSON.stringify(item) + ")'></i>";
-                            tabla += "<i class='bi bi-trash icon' onclick='EliminarUser(" + JSON.stringify(item) + ")'></i>";
-                        tabla += "</div>";
-                    tabla += "</td>";
-                    tabla += "<td>";
-                        tabla += "<button type='button' class='btn btn-warning btn-estado' data-id='" + item.id + "'>Cambiar Estado</button>";
-                    tabla += "</td>";
+                tabla += "<td>" + item.id + "</td>";
+                tabla += "<td>" + item.username + "</td>";
+                tabla += "<td>" + item.email + "</td>";
+                tabla += "<td>" + item.estado + "</td>";
+                tabla += "<td>";
+                tabla += "<div class='icon-container'>";
+                // Agregar iconos de editar y eliminar para cada usuario
+                tabla += "<i class='bi bi-pencil-square icon' onclick='EditarUser(" + JSON.stringify(item) + ")'></i>";
+                tabla += "<i class='bi bi-trash icon' onclick='EliminarUser(" + JSON.stringify(item) + ")'></i>";
+                tabla += "</div>";
+                tabla += "</td>";
+                tabla += "<td>";
+                tabla += "<button type='button' class='btn btn-warning btn-estado' data-id='" + item.id + "'>Cambiar Estado</button>";
+                tabla += "</td>";
                 tabla += "</tr>";
             });
-            resultado.innerHTML = tabla;
-        } 
-        
-        else 
-        {
-            resultado.innerHTML = '<p>Error al cargar los datos.</p>';
+            resultado.innerHTML = tabla; // Mostrar la tabla de usuarios en el resultado
+        } else {
+            resultado.innerHTML = '<p>Error al cargar los datos.</p>'; // Mostrar un mensaje de error si la solicitud no tiene éxito
         }
     };
-    ajax.send(formdata);
+    ajax.send(formdata); // Enviar la solicitud AJAX con los datos del formulario
 }
 
-function mostrarSweetAlert(id) 
-{
+// Función para mostrar el mensaje de confirmación para cambiar el estado del usuario
+function mostrarSweetAlert(id) {
     var formdata = new FormData();
     formdata.append('id', JSON.stringify(id));
 
@@ -79,15 +78,14 @@ function mostrarSweetAlert(id)
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, cambiar estado'
-    }).then((result) => 
-    {
-        if (result.isConfirmed) 
-        {
+    }).then((result) => {
+        if (result.isConfirmed) {
             cambiarEstadoUsuario(id);
         }
     });
 }
 
+// Función para cambiar el estado del usuario mediante AJAX
 function cambiarEstadoUsuario(id) {
     var formdata = new FormData();
     formdata.append('id', JSON.stringify(id));
@@ -96,11 +94,11 @@ function cambiarEstadoUsuario(id) {
     ajax.open('POST', '../validaciones/registros/estadouser.php');
     ajax.onload = function () {
         if (ajax.status == 200) {
+            // Procesar la respuesta después de cambiar el estado del usuario
             var json = JSON.parse(ajax.responseText);
-
             if (json.success) {
+                // Mostrar un mensaje de éxito si el estado del usuario se cambió correctamente
                 if (json.email === 'admin@gmail.com') {
-                    // Si el usuario es admin@gmail.com, no hacer nada
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -110,7 +108,6 @@ function cambiarEstadoUsuario(id) {
                         timerProgressBar: true
                     });
                 } else {
-                    // Si el usuario no es admin@gmail.com, cambiar el estado
                     Swal.fire({
                         position: 'top-end',
                         title: '¡Estado cambiado!',
@@ -120,6 +117,7 @@ function cambiarEstadoUsuario(id) {
                     });
                 }
             } else {
+                // Mostrar un mensaje de error si no se pudo cambiar el estado del usuario
                 Swal.fire({
                     position: "top-end",
                     icon: "error",
@@ -130,15 +128,17 @@ function cambiarEstadoUsuario(id) {
                 });
             }
         } else {
-            console.error('Error en la solicitud AJAX.');
+            console.error('Error en la solicitud AJAX.'); // Mostrar un mensaje de error en la consola si la solicitud AJAX falla
         }
     };
 
-    ajax.send(formdata);
+    ajax.send(formdata); // Enviar la solicitud AJAX con los datos del formulario
 }
 
+// Función para editar un usuario
 function EditarUser(item) {
     if (item.email === 'admin@gmail.com') {
+        // Mostrar un mensaje de error si se intenta editar al administrador
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -150,26 +150,26 @@ function EditarUser(item) {
         return;
     }
 
+    // Mostrar el modal de edición de usuario y prellenar los campos con la información del usuario seleccionado
     $('#modalEditarUser').modal('show');
     document.getElementById("id_usuario_editar").value = item.id;
     document.getElementById('nombre_user_editar').value = item.username;
     document.getElementById('email_user_editar').value = item.email;
 }
 
-function guardarCambios() 
-{
+// Función para guardar los cambios realizados en la edición de un usuario
+function guardarCambios() {
     var formdata = new FormData(document.getElementById('frmEditarUsuario')); // Obtener los datos del formulario
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/aplicarcambios/user.php');
 
-    ajax.onload = function () 
-    {
-        if (ajax.status == 200) 
-        {
+    ajax.onload = function () {
+        if (ajax.status == 200) {
+            // Procesar la respuesta después de guardar los cambios
             var json = JSON.parse(ajax.responseText);
-            if (json.success) 
-            {
-                $('#modalEditarUser').modal('hide'); // Ocultar el modal
+            if (json.success) {
+                // Mostrar un mensaje de éxito si los cambios se guardaron correctamente y recargar la lista de usuarios
+                $('#modalEditarUser').modal('hide');
                 Swal.fire({
                     position: 'top-end',
                     title: 'Usuario editado!',
@@ -178,10 +178,8 @@ function guardarCambios()
                     history.pushState({}, null, '?message=usuarioeditado');
                     ListarUsers('', document.getElementById('id_usuario_editar').value);
                 });
-            } 
-            
-            else 
-            {
+            } else {
+                // Mostrar un mensaje de error si no se pudieron guardar los cambios
                 Swal.fire({
                     position: 'top-end',
                     title: 'Error',
@@ -189,18 +187,17 @@ function guardarCambios()
                     icon: 'error'
                 });
             }
-        } 
-        
-        else 
-        {
-            console.error('Error en la solicitud AJAX.');
+        } else {
+            console.error('Error en la solicitud AJAX.'); // Mostrar un mensaje de error en la consola si la solicitud AJAX falla
         }
     };
-    ajax.send(formdata);
+    ajax.send(formdata); // Enviar la solicitud AJAX con los datos del formulario
 }
 
+// Función para eliminar un usuario
 function EliminarUser(item) {
     if (item.email === 'admin@gmail.com') {
+        // Mostrar un mensaje de error si se intenta eliminar al administrador
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -212,7 +209,7 @@ function EliminarUser(item) {
         return;
     }
 
-    // Mostrar cuadro de diálogo de SweetAlert para confirmar la eliminación
+    // Mostrar un mensaje de confirmación para eliminar el usuario
     Swal.fire({
         title: '¿Quieres eliminar este usuario?',
         position: 'top-end',
@@ -224,7 +221,7 @@ function EliminarUser(item) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Si se confirma la eliminación, enviar solicitud AJAX para eliminar el usuario
+            // Si se confirma la eliminación, enviar una solicitud AJAX para eliminar el usuario
             var formdata = new FormData();
             formdata.append('id', item.id);
 
@@ -232,18 +229,19 @@ function EliminarUser(item) {
             ajax.open('POST', '../validaciones/registros/eliminarusuario.php');
             ajax.onload = function () {
                 if (ajax.status == 200) {
+                    // Procesar la respuesta después de eliminar el usuario
                     var json = JSON.parse(ajax.responseText);
-
                     if (json.success) {
+                        // Mostrar un mensaje de éxito si el usuario se eliminó correctamente y recargar la lista de usuarios
                         Swal.fire({
                             position: 'top-end',
                             title: '¡Usuario eliminado!',
                             icon: 'success'
                         }).then(() => {
-                            // Recargar la lista de usuarios después de la eliminación
                             ListarUsers('');
                         });
                     } else {
+                        // Mostrar un mensaje de error si no se pudo eliminar el usuario
                         Swal.fire({
                             position: 'top-end',
                             title: 'Error',
@@ -252,11 +250,11 @@ function EliminarUser(item) {
                         });
                     }
                 } else {
-                    console.error('Error en la solicitud AJAX.');
+                    console.error('Error en la solicitud AJAX.'); // Mostrar un mensaje de error en la consola si la solicitud AJAX falla
                 }
             };
 
-            ajax.send(formdata);
+            ajax.send(formdata); // Enviar la solicitud AJAX con los datos del formulario
         }
     });
 }
