@@ -51,8 +51,8 @@ function ListarUsers(valor) {
                 tabla += "<i class='bi bi-trash icon' onclick='EliminarUser(" + JSON.stringify(item) + ")'></i>";
                 tabla += "</div>";
                 tabla += "</td>";
-                tabla += "<td>";
-                tabla += "<button type='button' class='btn btn-warning btn-estado' data-id='" + item.id + "'>Cambiar Estado</button>";
+                tabla += "<td id='cont-btn'>";
+                tabla += "<button type='button' class='btn btn-secondary btn-estado' data-id='" + item.id + "'>Cambiar Estado</button>";
                 tabla += "</td>";
                 tabla += "</tr>";
             });

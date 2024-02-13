@@ -295,3 +295,8 @@ img {
     font-size: 24px; /* Tamaño del ícono */
     cursor: pointer; /* Cambia el cursor al pasar por encima del ícono */
 }
+
+#cont-btn {
+    display: flex;
+    justify-content: center; /* Centra los iconos horizontalmente */
+}
