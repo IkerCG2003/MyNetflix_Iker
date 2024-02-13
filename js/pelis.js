@@ -34,8 +34,8 @@ function ListarPeli(valor, genero = '') {
                 contenido += '<p>' + item.genero + '</p>';
                 contenido += '<p>Me Gustas: ' + item.cantidadmegustas + '</p>';
                 contenido += "<div class='btn-container'>";
-                contenido += "<button type='button' class='btn btn-warning' onclick='Editar(" + JSON.stringify(item) + ")'>Editar</button>";
-                contenido += "<button type='button' class='btn btn-danger' onclick='Eliminar(" + JSON.stringify(item) + ")'>Eliminar</button>";
+                contenido += "<button type='button' class='btn btn-warning' onclick='EditarPeli(" + JSON.stringify(item) + ")'>Editar</button>";
+                contenido += "<button type='button' class='btn btn-danger' onclick='EliminarPeli(" + JSON.stringify(item) + ")'>Eliminar</button>";
                 contenido += "</div>"; // Cerramos btn-container
                 contenido += '</div>'; // Cerramos movie-info
                 contenido += '</div>'; // Cerramos grid-item
@@ -49,19 +49,19 @@ function ListarPeli(valor, genero = '') {
     ajax.send(formdata);
 }
 
-function Editar(item) {
-    $('#modalEditarPelicula').modal('show'); // Mostrar el modal
+function EditarPeli(item) {
+    $('#modalEditarPelicula').modal('show'); 
     document.getElementById("id_pelicula_editar").value = item.id;
-    document.getElementById('titulo_peli_editar').value = item.titulo; // Rellenar el campo de título con el título de la película
-    document.getElementById('genero_peli_editar').value = item.genero; // Rellenar el campo de género con el género de la película
-    document.getElementById('titulo_peli_editar').value = item.nombre; // Rellenar el campo de me gustas con el título de la película
-    // Puedes agregar más campos aquí si los tienes en tu formulario
+    document.getElementById('titulo_peli_editar').value = item.titulo; 
+    document.getElementById('genero_peli_editar').value = item.genero; 
+    document.getElementById('titulo_peli_editar').value = item.nombre; 
 }
 
-function guardarCambios() {
+function guardarCambios() 
+{
     var formdata = new FormData(document.getElementById('frmEditarPelicula')); // Obtener los datos del formulario
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../validaciones/editar/editar.php');
+    ajax.open('POST', '../validaciones/aplicarcambios/pelis.php');
 
     ajax.onload = function () 
     {
@@ -100,7 +100,7 @@ function guardarCambios() {
     ajax.send(formdata);
 }
 
-function Eliminar(item) {
+function EliminarPeli(item) {
     EnviarAccion(item, 'eliminar');
 }
 
@@ -125,7 +125,7 @@ function realizarAccion(item, accion) {
     formdata.append('item', JSON.stringify(item));
 
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../validaciones/registros/' + accion + '.php');
+    ajax.open('POST', '../validaciones/registros/' + accion + 'pelicula.php');
     ajax.onload = function () {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);

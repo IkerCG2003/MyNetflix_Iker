@@ -1,24 +1,32 @@
 const buscar_user = document.getElementById("buscar_user");
 
-buscar_user.addEventListener("keyup", () => {
+buscar_user.addEventListener("keyup", () => 
+{
     const valor = buscar_user.value;
-    if (valor == "") {
+    if (valor == "") 
+    {
         ListarUsers('');
-    } else {
+    } 
+    
+    else 
+    {
         ListarUsers(valor);
     }
 });
 
 ListarUsers('');
 
-document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('btn-estado')) {
+document.addEventListener('click', function (e) 
+{
+    if (e.target.classList.contains('btn-estado')) 
+    {
         var idUsuario = e.target.getAttribute('data-id');
         mostrarSweetAlert(idUsuario);
     }
 });
 
-function ListarUsers(valor) {
+function ListarUsers(valor) 
+{
     var resultado = document.getElementById('resultado_usuarios_registrados');
     var formdata = new FormData();
     formdata.append('busqueda', valor);
@@ -28,22 +36,37 @@ function ListarUsers(valor) {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);
             var tabla = '';
-            json.forEach(function (item) {
-                tabla += "<tr><td>" + item.id + "</td>";
-                tabla += "<td>" + item.username + "</td>";
-                tabla += "<td>" + item.email + "</td>";
-                tabla += "<td>" + item.estado + "</td>";
-                tabla += "<td><button type='button' class='btn btn-warning' onclick='mostrarSweetAlert(" + item.id + ")'>Cambiar Estado</button></td></tr>";
+            json.forEach(function (item) 
+            {
+                tabla += "<tr>";
+                    tabla += "<td>" + item.id + "</td>";
+                    tabla += "<td>" + item.username + "</td>";
+                    tabla += "<td>" + item.email + "</td>";
+                    tabla += "<td>" + item.estado + "</td>";
+                    tabla += "<td>";
+                        tabla += "<div class='icon-container'>";
+                            tabla += "<i class='bi bi-pencil-square icon' onclick='EditarUser(" + JSON.stringify(item) + ")'></i>";
+                            tabla += "<i class='bi bi-trash icon' onclick='EliminarUser(" + JSON.stringify(item) + ")'></i>";
+                        tabla += "</div>";
+                    tabla += "</td>";
+                    tabla += "<td>";
+                        tabla += "<button type='button' class='btn btn-warning btn-estado' data-id='" + item.id + "'>Cambiar Estado</button>";
+                    tabla += "</td>";
+                tabla += "</tr>";
             });
             resultado.innerHTML = tabla;
-        } else {
+        } 
+        
+        else 
+        {
             resultado.innerHTML = '<p>Error al cargar los datos.</p>';
         }
     };
     ajax.send(formdata);
 }
 
-function mostrarSweetAlert(id) {
+function mostrarSweetAlert(id) 
+{
     var formdata = new FormData();
     formdata.append('id', JSON.stringify(id));
 
@@ -56,25 +79,32 @@ function mostrarSweetAlert(id) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí, cambiar estado'
-    }).then((result) => {
-        if (result.isConfirmed) {
+    }).then((result) => 
+    {
+        if (result.isConfirmed) 
+        {
             cambiarEstadoUsuario(id);
         }
     });
 }
 
-function cambiarEstadoUsuario(id) {
+function cambiarEstadoUsuario(id) 
+{
     var formdata = new FormData();
     formdata.append('id', JSON.stringify(id));
 
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../validaciones/registros/estado.php');
-    ajax.onload = function () {
-        if (ajax.status == 200) {
+    ajax.open('POST', '../validaciones/registros/estadouser.php');
+    ajax.onload = function () 
+    {
+        if (ajax.status == 200) 
+        {
             var json = JSON.parse(ajax.responseText);
 
-            if (json.success) {
-                if (json.email === 'admin@gmail.com') {
+            if (json.success) 
+            {
+                if (json.email === 'admin@gmail.com') 
+                {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -83,8 +113,11 @@ function cambiarEstadoUsuario(id) {
                         timer: 1500,
                         timerProgressBar: true
                     });
-                    return; // Detiene la ejecución del script si el email es 'admin@gmail.com'
-                } else {
+                    return; 
+                } 
+                
+                else 
+                {
                     Swal.fire({
                         position: 'top-end',
                         title: '¡Estado cambiado!',
@@ -93,7 +126,10 @@ function cambiarEstadoUsuario(id) {
                         window.location.href = '?message=estadocambiado&id=' + id;
                     });
                 }
-            } else {
+            } 
+            
+            else 
+            {
                 Swal.fire({
                     position: "top-end",
                     icon: "error",
@@ -102,12 +138,67 @@ function cambiarEstadoUsuario(id) {
                     timer: 1500,
                     timerProgressBar: true
                 });
-                return; // Detiene la ejecución del script si el email es 'admin@gmail.com'
-        }
-        } else {
+                return; 
+            }
+        } 
+        
+        else 
+        {
             console.error('Error en la solicitud AJAX.');
         }
     };
 
     ajax.send(formdata);
 }
+
+function EditarUser(item) 
+{
+    $('#modalEditarUser').modal('show'); 
+    document.getElementById("id_usuario_editar").value = item.id;
+    document.getElementById('nombre_user_editar').value = item.username; 
+    document.getElementById('email_user_editar').value = item.email; 
+}
+
+function guardarCambios() 
+{
+    var formdata = new FormData(document.getElementById('frmEditarUsuario')); // Obtener los datos del formulario
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', '../validaciones/aplicarcambios/user.php');
+
+    ajax.onload = function () 
+    {
+        if (ajax.status == 200) 
+        {
+            var json = JSON.parse(ajax.responseText);
+            if (json.success) 
+            {
+                $('#modalEditarUser').modal('hide'); // Ocultar el modal
+                Swal.fire({
+                    position: 'top-end',
+                    title: 'Usuario editado!',
+                    icon: 'success'
+                }).then(() => {
+                    history.pushState({}, null, '?message=usuarioeditado');
+                    ListarUsers('', document.getElementById('id_usuario_editar').value);
+                });
+            } 
+            
+            else 
+            {
+                Swal.fire({
+                    position: 'top-end',
+                    title: 'Error',
+                    text: 'Error al editar el usuario. Mensaje: ' + json.message,
+                    icon: 'error'
+                });
+            }
+        } 
+        
+        else 
+        {
+            console.error('Error en la solicitud AJAX.');
+        }
+    };
+    ajax.send(formdata);
+}
+

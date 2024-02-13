@@ -83,7 +83,7 @@ function RealizarAccion(item, accion) {
     formdata.append('item', JSON.stringify(item));
 
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', '../validaciones/registros/' + accion + '.php');
+    ajax.open('POST', '../validaciones/registros/' + accion + 'peticion.php');
     ajax.onload = function () {
         if (ajax.status == 200) {
             var json = JSON.parse(ajax.responseText);

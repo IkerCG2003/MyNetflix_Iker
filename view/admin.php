@@ -8,13 +8,21 @@ include_once('../herramientas/conexion.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Agrega estas líneas en la sección <head> de tu HTML -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Icono -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Fuente Header -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="../css/admin.css">
     <title>Página del administrador</title>
@@ -89,12 +97,47 @@ include_once('../herramientas/conexion.php');
     <?php
     }
     ?>
-    
-    <div class="container" id="seccion_usuarios">
+
+    <!-- Header -->
+    <section id="header">
+        <h2>Ñetflix</h2>
+    </section>
+
+    <!-- Navbar -->
+    <section id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">        
+            <a class="navbar-brand" href="#">Ñetflix</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#seccion_usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#seccion_top">Top 5</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#seccion_pelis">Catálogo</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.php"><span class='material-symbols-outlined'>logout</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <section class="container" id="seccion_usuarios">
         <h2>Sección de usuarios</h2>
         <div>
             <div>
-                <section id="peticiones_usuarios">
+                <div id="peticiones_usuarios">
                     <div>
                         <h3>Peticiones de registro</h3>
                     </div>
@@ -122,7 +165,7 @@ include_once('../herramientas/conexion.php');
                             <tbody id="resultado_registro_usuarios"></tbody>
                         </table>
                     </div>
-                </section>
+                </div>
             </div>
 
             <div>
@@ -148,6 +191,7 @@ include_once('../herramientas/conexion.php');
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Estado</th>
+                                    <th>Operaciones</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -158,16 +202,16 @@ include_once('../herramientas/conexion.php');
                 </section>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="container" id="seccion_top">
+    <section class="container" id="seccion_top">
         <h2>Sección del TOP 5 de películas</h2>
         <div class="grid">
             <div id="resultado_top5"></div>
         </div>
-    </div>
+    </section>
 
-    <div class="container" id="seccion_pelis">
+    <section class="container" id="seccion_pelis">
         <h2>Sección del catálogo de películas</h2>
         <div class="row align-items-center">
             <div class="col-md-6">
@@ -200,7 +244,7 @@ include_once('../herramientas/conexion.php');
         <div class="grid">
             <div id="resultado_pelis"></div>
         </div>
-    </div>
+    </section>
 
     <!-- Modal para añadir película -->
     <div class="modal fade" id="modalAnadirPelicula" tabindex="-1" role="dialog" aria-labelledby="modalAnadirPeliculaLabel" aria-hidden="true">
@@ -286,17 +330,74 @@ include_once('../herramientas/conexion.php');
         </div>
     </div>
 
+        <!-- Modal para editar usuario -->
+        <div class="modal fade" id="modalEditarUser" tabindex="-1" role="dialog" aria-labelledby="modalEditarUser" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarUser">Editar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmEditarUsuario" enctype="multipart/form-data">
+                        <input type="hidden" id="id_usuario_editar" name="id_usuario_editar">
+                        <div class="form-group">
+                            <label for="nombre_user_editar">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre_user_editar" name="nombre_user_editar">
+                        </div>
+                        <div class="form-group">
+                            <label for="email_user_editar">Email:</label>
+                            <input type="text" class="form-control" id="email_user_editar" name="email_user_editar">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Scripts JS -->
     <script src="../js/pelis.js"></script>
     <script src="../js/top5.js"></script>
     <script src="../js/peticiones.js"></script>
     <script src="../js/usuarios.js"></script>
+    <!-- JS LISTAR USUARIOS Y PELOS -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() 
+        {
             ListarUsers(1); // Inicialmente mostramos la primera página
             ListarPeli(''); // Listamos las películas
         });
+    </script>
+    <!-- JS HEADER -->
+    <script>
+        window.addEventListener('scroll', function() 
+        {
+            var header = document.getElementById('header');
+                if (window.scrollY > 0) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+        });
+    </script>
+    <!-- JS NAVBAR -->
+    <script>
+        window.addEventListener('scroll', function() 
+        {
+            var navbar = document.getElementById('navbar');
+            var headerHeight = document.getElementById('header').offsetHeight;
+            if (window.scrollY > headerHeight) {
+                navbar.classList.add('fixed-top');
+            } else {
+                navbar.classList.remove('fixed-top');
+            }
+        });
+
     </script>
 </body>
 </html>
