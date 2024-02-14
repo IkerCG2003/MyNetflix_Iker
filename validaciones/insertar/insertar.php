@@ -6,7 +6,7 @@ $genero = $_POST['genero_peli'];
 $img = $titulo; // Asignar el mismo valor que el título para la portada de la película
 
 // Verificar si la película ya existe en la base de datos
-$consulta_existencia = $pdo->prepare('SELECT COUNT(*) FROM tbl_peliculas WHERE nombre = ?');
+$consulta_existencia = $pdo->prepare('SELECT COUNT(*) FROM tbl_peliculas WHERE titulo = ?');
 $consulta_existencia->execute([$titulo]);
 $existe_pelicula = $consulta_existencia->fetchColumn();
 
@@ -34,7 +34,7 @@ $rutaImagen = "../../img/" . $nombreImagen;
 move_uploaded_file($_FILES['imagen_peli']['tmp_name'], $rutaImagen);
 
 // Preparar la consulta SQL para insertar los datos
-$consulta = $pdo->prepare('INSERT INTO tbl_peliculas (nombre, genero, cantidadmegustas, portada) VALUES (?,?,?,?)');
+$consulta = $pdo->prepare('INSERT INTO tbl_peliculas (titulo, genero, cantidadmegustas, portada) VALUES (?,?,?,?)');
 
 // Ejecutar la consulta con los datos proporcionados
 $consulta->execute([$titulo, $genero, 0, $img]); // Asegúrate de asignar $img aquí para la portada
