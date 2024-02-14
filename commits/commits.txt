@@ -1,0 +1,76 @@
+Commits on Feb 14, 2024
+Arreglo estructura HTML
+Saludo al usuario, proyecto terminado
+Arreglo bug inserción de películas
+Arreglo bug filtro por titulo
+Arreglo Bug Editar pelicula
+Arreglo bug filtro por género
+Arreglos en estructura
+Adaptación media query
+Arreglo estilos
+página admin terminada
+
+Commits on Feb 13, 2024
+Arreglo estilos
+Arreglo estilos botones
+Comentarios en los JS
+Eliminar usuario
+Editar user admin@gmail.com
+Iconos + editar usuario
+
+Commits on Feb 9, 2024
+Arreglo cambio estado
+Arreglos solicitud pendiente
+Arreglos al insertar películas + Cambios en la BD + Arreglos en las portadas
+Filtro por genero
+Editar pelicula hecho
+Filtro por género
+Arreglo estructura HTML
+
+Commits on Feb 7, 2024
+Lógica eliminar pelicula
+Arreglos SA
+
+Commits on Feb 6, 2024
+Lógica usuarios inactivos + arreglo estetico
+Arreglos estructura
+Insertar películas
+
+Commits on Feb 5, 2024
+filtro por título y género
+orden pelis
+Sección catálogo de pelis
+Sweet Alert aceptar y denegar
+cambiar estado
+Pagination
+Top 5 con ajax
+
+Commits on Feb 2, 2024
+Sección TOP 5 sin ajax
+Gestión de usuarios terminada
+
+Commits on Feb 1, 2024
+Paginación eliminada
+Paginación
+Arreglos de peticiones.js
+Arreglos en registro peticiones + registro de usuarios con AJAX
+
+Commits on Jan 31, 2024
+aceptar / denegar con AJAX
+tbl_registros con ajax
+lógica de la tabla de registros
+Arreglos en login / register
+Arreglo imagen de fondo login/register en diseño responsive
+Redirección según el email
+Arreglos en estructura HTML
+Validaciones de campos vacios de los formularios
+Validaciones de JS
+
+Commits on Jan 30, 2024
+Gestión de secciones
+Arreglo con la comparación de las contraseñas
+lógica login y register
+
+Commits on Jan 26, 2024
+Inicio de sesión + registro con estilos
+Initial commit

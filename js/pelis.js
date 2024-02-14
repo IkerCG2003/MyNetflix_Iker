@@ -87,7 +87,7 @@ function guardarCambiosPelicula()
                 }).then(() => {
                     // Recargar la lista de películas después de editar
                     history.pushState({}, null, '?message=peliculaeditada');
-                    ListarPeli('', document.getElementById('id_pelicula_editar').value);
+                    ListarPeli('');
                 });
             } else {
                 // Si hubo un error al guardar los cambios, mostrar un mensaje de error
