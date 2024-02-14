@@ -198,7 +198,6 @@ include_once('../herramientas/conexion.php');
             </div>
         </section>
     </div>
-</section>
 
     <section class="container" id="seccion_top">
         <h2>Sección del TOP 5 de películas</h2>

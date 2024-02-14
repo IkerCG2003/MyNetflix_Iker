@@ -4,8 +4,8 @@ include_once("../herramientas/conexion.php");
 if (isset($_POST['busqueda']) && !empty($_POST['busqueda'])) 
 {
     $data = $_POST['busqueda'];
-    $consulta = $pdo->prepare("SELECT * FROM tbl_peliculas WHERE id LIKE :data OR nombre LIKE :data ORDER BY cantidadmegustas DESC");
-    $consulta->bindValue(':data', '%' . $data . '%', PDO::PARAM_STR);
+    $consulta = $pdo->prepare("SELECT * FROM tbl_peliculas WHERE titulo LIKE :titulo ORDER BY cantidadmegustas DESC");
+    $consulta->bindValue(':titulo', '%' . $data . '%', PDO::PARAM_STR);
 } 
 
 else 
