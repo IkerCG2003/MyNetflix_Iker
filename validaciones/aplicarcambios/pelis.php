@@ -6,23 +6,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id_pelicula_editar"]))
 
     // Obtener los datos del formulario de edición
     $id_pelicula = $_POST["id_pelicula_editar"];
-    $titulo = $_POST["titulo_peli_editar"];
-    $genero = $_POST["genero_peli_editar"];
+    $titulo = $_POST["titulo_peli_editar"]; // Corregir el nombre del campo
+    $genero = $_POST["genero_peli_editar"]; // Corregir el nombre del campo
 
-    // Actualizar la película en la base de datos
-    $consulta = $pdo->prepare("UPDATE tbl_peliculas SET nombre = ?, genero = ? WHERE id = ?");
+    // Actualizar el usuario en la base de datos
+    $consulta = $pdo->prepare("UPDATE tbl_peliculas SET titulo = ?, genero = ? WHERE id = ?");
     $consulta->bindParam(1, $titulo);
     $consulta->bindParam(2, $genero);
     $consulta->bindParam(3, $id_pelicula);
 
     if ($consulta->execute()) {
-        // La película se actualizó correctamente
+        // El usuario se actualizó correctamente
         $response["success"] = true;
-        $response["message"] = "Película actualizada correctamente";
+        $response["message"] = "¡Pelicula editada correctamente!";
     } else {
-        // Ocurrió un error al actualizar la película
+        // Ocurrió un error al actualizar el usuario
         $response["success"] = false;
-        $response["message"] = "Error al actualizar la película: " . $consulta->errorInfo()[2];
+        $response["message"] = "Error al actualizar el usuario: " . $consulta->errorInfo()[2];
     }
 
     // Cerrar la conexión a la base de datos
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id_pelicula_editar"]))
 } else {
     // No se recibieron datos del formulario de edición
     $response["success"] = false;
-    $response["message"] = "No se recibieron datos para editar la película";
+    $response["message"] = "No se recibieron datos para editar el usuario";
 }
 
 // Enviar la respuesta JSON al cliente

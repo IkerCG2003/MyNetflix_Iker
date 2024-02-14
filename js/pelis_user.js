@@ -1,4 +1,10 @@
 // pelis_user.js
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Al cargar la página, restaurar el estado de "Me gusta" desde el almacenamiento local
+    restoreMeGustaState();
+});
+
 const buscar_peli = document.getElementById("buscar_peli");
 
 buscar_peli.addEventListener("keyup", () => {
@@ -70,6 +76,9 @@ function toggleMeGusta(elemento) {
             
             // Cambiar la clase del elemento para actualizar el estilo
             elemento.classList.toggle('me-gusta-activo');
+
+            // Al hacer clic en "Me gusta", actualizar el estado en el almacenamiento local
+            updateMeGustaState(idPelicula, !esMeGusta);
             
         } else {
             console.error('Error al procesar la solicitud.');
@@ -77,6 +86,34 @@ function toggleMeGusta(elemento) {
     };
     ajax.send(formData);
 }
+
+function restoreMeGustaState() {
+    // Obtener el estado de "Me gusta" del almacenamiento local
+    const meGustaState = JSON.parse(localStorage.getItem('meGustaState')) || {};
+
+    // Recorrer todos los elementos con la clase 'me-gusta'
+    const meGustaElements = document.querySelectorAll('.me-gusta');
+    meGustaElements.forEach(elemento => {
+        const idPelicula = elemento.dataset.id;
+        // Si el id de la película está en el estado de "Me gusta", actualizar su estado en la interfaz
+        if (meGustaState[idPelicula]) {
+            elemento.classList.add('me-gusta-activo');
+            elemento.innerHTML = '<i class="bi bi-heart-fill"></i> Ya no me gusta';
+        }
+    });
+}
+
+function updateMeGustaState(idPelicula, meGusta) {
+    // Obtener el estado actual de "Me gusta" del almacenamiento local
+    const meGustaState = JSON.parse(localStorage.getItem('meGustaState')) || {};
+
+    // Actualizar el estado de "Me gusta" para la película específica
+    meGustaState[idPelicula] = meGusta;
+
+    // Guardar el estado actualizado en el almacenamiento local
+    localStorage.setItem('meGustaState', JSON.stringify(meGustaState));
+}
+
 
 function filtrarPorGenero() {
     const genero = document.getElementById('genero_peli').value;

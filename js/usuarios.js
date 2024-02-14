@@ -4,7 +4,7 @@ const buscar_user = document.getElementById("buscar_user");
 // Agregar un evento de tecla para realizar la búsqueda de usuarios mientras se escribe en el campo de búsqueda
 buscar_user.addEventListener("keyup", () => {
     const valor = buscar_user.value;
-    if (valor == "") {
+    if (valor === "") {
         // Si el campo de búsqueda está vacío, listar todos los usuarios
         ListarUsers('');
     } else {
@@ -158,7 +158,7 @@ function EditarUser(item) {
 }
 
 // Función para guardar los cambios realizados en la edición de un usuario
-function guardarCambios() {
+function guardarCambiosUser() {
     var formdata = new FormData(document.getElementById('frmEditarUsuario')); // Obtener los datos del formulario
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/aplicarcambios/user.php');
@@ -175,9 +175,11 @@ function guardarCambios() {
                     title: '¡Usuario editado!',
                     icon: 'success'
                 }).then(() => {
-                    history.pushState({}, null, '?message=usuarioeditado');
-                    ListarUsers('', document.getElementById('id_usuario_editar').value);
+                    // Recargar la lista de películas después de editar
+                    history.pushState({}, null, '?message=peliculaeditada');
+                    ListarPeli('', document.getElementById('id_pelicula_editar').value);
                 });
+                
             } else {
                 // Mostrar un mensaje de error si no se pudieron guardar los cambios
                 Swal.fire({

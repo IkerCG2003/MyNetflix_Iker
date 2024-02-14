@@ -1,14 +1,14 @@
-const buscar_peli = document.getElementById("buscar_peli");
+const buscar_peli_admin = document.getElementById("buscar_peli_admin");
 
 // Evento de tecla para buscar películas
-buscar_peli.addEventListener("keyup", () => {
-    const valor = buscar_peli.value;
+buscar_peli_admin.addEventListener("keyup", () => {
+    const valor = buscar_peli_admin.value;
     if (valor == "") {
         // Si el campo de búsqueda está vacío, listar todas las películas
-        ListarPeli('');
+        ListarPeli('', document.getElementById('genero_peli').value);
     } else {
         // Si hay un valor en el campo de búsqueda, listar películas que coincidan con ese valor
-        ListarPeli(valor);
+        ListarPeli(valor, document.getElementById('genero_peli').value);
     }
 });
 
@@ -16,7 +16,7 @@ buscar_peli.addEventListener("keyup", () => {
 function ListarPeli(valor, genero = '') {
     var resultado = document.getElementById('resultado_pelis');
     var formdata = new FormData();
-    formdata.append('busqueda', valor);
+    formdata.append('busqueda', valor); // Agregar el valor de búsqueda al FormData
     formdata.append('genero', genero);
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../listar/listarpelis.php');
@@ -67,7 +67,8 @@ function EditarPeli(item) {
 }
 
 // Función para guardar cambios al editar una película
-function guardarCambiosPelis() {
+function guardarCambiosPelicula() 
+{
     var formdata = new FormData(document.getElementById('frmEditarPelicula')); // Obtener los datos del formulario de edición
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../validaciones/aplicarcambios/pelis.php');
