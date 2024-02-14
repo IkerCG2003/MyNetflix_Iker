@@ -1,6 +1,7 @@
 <?php
-session_start();
-include_once('../herramientas/conexion.php');
+    session_start();
+    include_once('../herramientas/conexion.php');
+    $email  = $_SESSION['email'];
 ?>
 
 <!DOCTYPE html>
@@ -125,6 +126,9 @@ include_once('../herramientas/conexion.php');
                 </ul>
 
                 <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="nav-link">¡Hola, <?php echo $email; ?>!</span>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./login.php"><span class='material-symbols-outlined'>logout</span></a>
                     </li>
