@@ -1,44 +1,39 @@
-// Llama a la función ListarTop5() para mostrar los primeros 5 elementos inicialmente
-ListarTop5();
-
-// Establece un intervalo para llamar periódicamente a la función ListarTop5() cada 5 segundos
-setInterval(ListarTop5, 5000);
-
-// Función para listar los primeros 5 elementos
 function ListarTop5() {
-    var resultado = document.getElementById('resultado_top5');
+    var carouselInner = document.querySelector('#carouselExampleControls .carousel-inner');
     var ajax = new XMLHttpRequest();
     ajax.open('POST', '../listar/listartop5.php');
     ajax.onload = function () {
-        if (ajax.status == 200) {
+        if (ajax.status === 200) {
             var json = JSON.parse(ajax.responseText);
-            var contenido = ''; // Iniciar contenido vacío
-            var contador = 0; // Iniciar contador de películas por fila
-            json.forEach(function (item) {
-                if (contador % 5 === 0) {
-                    // Si es el inicio de una nueva fila, agregar un nuevo div de fila
-                    contenido += '<div class="row">';
+            carouselInner.innerHTML = ''; // Limpiar contenido existente del carrusel
+            json.forEach(function (item, index) {
+                var carouselItem = document.createElement('div');
+                carouselItem.classList.add('carousel-item');
+                if (index === 0) {
+                    carouselItem.classList.add('active'); // Establecer la primera diapositiva como activa
                 }
-                contenido += '<div class="col-md-2 grid-item">'; // Establecer el tamaño de la columna
-                contenido += '<div class="movie-container">'; // Contenedor de película
-                contenido += '<img src="../img/' + item.portada + '.jpg" alt="' + item.titulo + '">'; // Imagen de la película
-                contenido += '<div class="movie-info-top">'; // Contenedor de información
-                contenido += '<p class="movie-name">' + item.titulo + '</p>'; // Nombre de la película
-                contenido += '<p>' + item.genero + '</p>'; // Género de la película
-                contenido += '<p>Me Gustas: ' + item.cantidadmegustas + '</p>'; // Cantidad de "Me Gustas"
-                contenido += '</div>'; // Cerrar contenedor de información
-                contenido += '</div>'; // Cerrar contenedor de película
-                contenido += '</div>'; // Cerrar columna
-                contador++; // Incrementar contador de películas
-                if (contador % 5 === 0) {
-                    // Si se completaron 5 películas en la fila, cerrar el div de fila
-                    contenido += '</div>';
-                }
+                var image = document.createElement('img');
+                image.classList.add('d-block', 'w-100');
+                image.src = '../img/' + item.portada + '.jpg';
+                image.alt = item.titulo;
+                carouselItem.appendChild(image);
+    
+                // Crear y agregar el título y la posición de la película
+                var caption = document.createElement('div');
+                caption.classList.add('carousel-caption', 'd-none', 'd-md-block');
+                caption.innerHTML = '<h5>' + item.titulo + '</h5><p>Top ' + item.posicion + '</p>';
+                carouselItem.appendChild(caption);
+    
+                carouselInner.appendChild(carouselItem);
             });
-            resultado.innerHTML = contenido; // Mostrar contenido en el resultado
         } else {
-            resultado.innerHTML = '<p>Error al cargar los datos.</p>'; // Mostrar mensaje de error si la solicitud falla
+            carouselInner.innerHTML = '<div class="carousel-item active"><p>Error al cargar los datos.</p></div>';
         }
     };
     ajax.send(); // Enviar solicitud AJAX
 }
+
+// Llamar a la función para cargar el top 5 cuando se cargue la página
+window.onload = function () {
+    ListarTop5();
+};

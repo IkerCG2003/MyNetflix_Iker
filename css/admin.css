@@ -372,6 +372,46 @@ input[type='select'] {
     margin-left: 10px; /* Espacio a la izquierda del botón */
 }
 
+.carousel-item img {
+    height: 55vh;
+    width: 25vw;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.carousel-caption h5 {
+    margin-bottom: 0.5rem; /* Espacio entre el título y el párrafo */
+    font-weight: bold; /* Negrita para el título */
+    color: white;
+    font-size: 3vw;
+}
+
+.carousel-caption p {
+    margin-bottom: 0;
+    color: white;
+    font-size: 1.75vw;
+}
+
 
 /* Estilos para pantallas con ancho máximo de 700px */
 @media screen and (max-width: 700px) {
