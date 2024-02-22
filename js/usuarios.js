@@ -155,6 +155,8 @@ function EditarUser(item) {
     document.getElementById("id_usuario_editar").value = item.id;
     document.getElementById('nombre_user_editar').value = item.username;
     document.getElementById('email_user_editar').value = item.email;
+
+    ListarUsers('');
 }
 
 // Función para guardar los cambios realizados en la edición de un usuario
