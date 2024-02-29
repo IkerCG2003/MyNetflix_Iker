@@ -409,7 +409,6 @@
                 navbar.classList.remove('fixed-top');
             }
         });
-
     </script>
     <!-- JS USUARIOS -->
     <script>
